@@ -1,33 +1,40 @@
 import { exec } from "node:child_process";
 import path from "node:path";
 import { cwd } from "node:process";
+import util from "node:util";
 
 const appPath = path.join(cwd(), "/app");
 const studioPath = path.join(cwd(), "/studio");
 
 // remove typescript
 const filesToRemove = ["tsconfig.*", "*.ts"];
-const packagesToRemove = ["typescript", "ora"];
+const depsToRemove = ["typescript", "ora"];
 
-function removeTypeScript(path) {
-  // run typescript compiler, to remove typescript
-  const install = exec("npm install && npm run tsc", {
-    cwd: path,
-  });
+const execPromise = util.promisify(exec);
 
-  install.stdout.on("data", (data) => {
-    console.log(`stdout: ${data}`);
-  });
+async function removeTypeScript(folderPath) {
+  console.log("Running.");
 
-  // remove files
-  const removeFiles = exec("rimraf *.ts", {
-    cwd: path,
-  });
+  try {
+    // installs
+    await execPromise("npm install && npm run remove-typescript", {
+      cwd: folderPath,
+    });
 
-  // remove packages
-  const remove = exec("npm uninstall " + packagesToRemove.join(" "), {
-    cwd: path,
-  });
+    // remove files
+    await execPromise(
+      `npx rimraf -g ${filesToRemove.join(
+        " "
+      )} && npx rimraf -g "!(node_modules)**/*.ts" && npm uninstall rimraf typescript`,
+      {
+        cwd: folderPath,
+      }
+    );
+
+    // remove scripts from package.json
+  } catch (error) {
+    console.log(error);
+  }
 }
 
-removeTypeScript(studioPath);
+await removeTypeScript(studioPath);

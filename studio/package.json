@@ -10,8 +10,7 @@
     "build": "sanity build",
     "deploy": "sanity deploy",
     "deploy-graphql": "sanity graphql deploy",
-    "tsc": "tsc",
-    "lint": "eslint --fix ."
+    "remove-typescript": "tsc && prettier --write . && eslint --fix && npm uninstall rimraf typescript"
   },
   "keywords": [
     "sanity"
@@ -31,7 +30,7 @@
     "eslint": "^8.6.0",
     "prettier": "^2.8.4",
     "rimraf": "^4.4.1",
-    "typescript": "^4.0.0"
+    "typescript": "^5.0.2"
   },
   "prettier": {
     "semi": false,
