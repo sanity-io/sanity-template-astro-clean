@@ -1,0 +1,25 @@
+---
+import { getPost, getPosts } from "../../utils/sanity";
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post) => ({ params: { slug: post.slug?.current } }));
+}
+
+const { slug } = Astro.params as { slug: string };
+
+const post = await getPost(slug);
+---
+
+<p>Individual post page</p>
+<a href="/">Go back</a>
+<pre>{JSON.stringify(post, undefined, 1)}</pre>
+
+<style>
+  pre {
+    background: #eee;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+</style>

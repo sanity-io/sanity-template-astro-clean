@@ -1,0 +1,35 @@
+---
+import Card from "../components/Card.astro";
+import Layout from "../layouts/Layout.astro";
+import type { Post } from "../utils/sanity";
+import { getPosts } from "../utils/sanity";
+
+const posts = await getPosts();
+---
+
+<Layout title="Welcome to Astro.">
+  <main>
+    <h1>Astro with Sanity</h1>
+    {
+      posts.length ? (
+        posts.map((post: Post) => <Card post={post} />)
+      ) : (
+        <p>Go to the Sanity Studio to add posts</p>
+      )
+    }
+  </main>
+</Layout>
+
+<style>
+  main {
+    margin: auto;
+    padding: 1.5rem;
+    max-width: 60ch;
+  }
+  h1 {
+    font-size: 3rem;
+    margin: 0;
+    letter-spacing: -0.025em;
+    font-weight: 800;
+  }
+</style>

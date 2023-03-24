@@ -1,0 +1,45 @@
+---
+import { PortableText } from "astro-portabletext";
+import { urlFor } from "../utils/image";
+import type { Post } from "../utils/sanity";
+
+const { post } = Astro.props as { post: Post };
+---
+
+<div class="card">
+  <h2>
+    <a
+      class="link"
+      href={`/posts/${post.slug?.current}`}
+    >
+      {post.title}
+    </a>
+  </h2>
+  {
+    post.mainImage && (
+      <img src={urlFor(post.mainImage).width(500).height(300).url()} />
+    )
+  }
+  <PortableText value={post.body} />
+</div>
+
+<style>
+  .card {
+    position: relative;
+  }
+
+  .card .link {
+    color: var(--primary);
+    text-decoration: none;
+  }
+
+  /* .card .link::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+  } */
+
+  .card .link:hover {
+    text-decoration: underline;
+  }
+</style>
