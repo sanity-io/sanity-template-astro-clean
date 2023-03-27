@@ -79,5 +79,5 @@ async function removeTypeScript(folderPath) {
   }
 }
 
-// await removeTypeScript(studioPath);
+await removeTypeScript(studioPath);
 await removeTypeScript(appPath);
