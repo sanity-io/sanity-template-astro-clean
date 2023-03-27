@@ -22,7 +22,6 @@
   },
   "includes": [
     "**/*.ts",
-    "**/*.astro",
     "**/*.tsx"
   ],
   "exclude": [
