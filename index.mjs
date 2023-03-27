@@ -13,7 +13,7 @@ const filesToRemove = ["tsconfig.*", "*.ts", "env.d.ts"];
 const execPromise = util.promisify(exec);
 
 async function removeTypeScript(folderPath) {
-  console.log("Initiated TS removal");
+  console.log("Initiated TS removal for ", folderPath);
 
   try {
     // installs
@@ -37,10 +37,47 @@ async function removeTypeScript(folderPath) {
     delete pkg.scripts["remove-typescript"];
     await fs.writeFile(packageJsonPath, JSON.stringify(pkg, null, 2));
 
+    // recursively loop through src folder to find all astro file paths
+    const astroFilePaths = [];
+
+    async function scanFolderForAstroFiles(folder) {
+      const files = await fs.readdir(path.resolve(folder), {
+        withFileTypes: true,
+      });
+
+      for (const file of files) {
+        if (file.isFile() && file.name.endsWith(".astro")) {
+          astroFilePaths.push(path.resolve(folder, file.name));
+          continue;
+        }
+
+        if (file.isDirectory()) {
+          await scanFolderForAstroFiles(path.resolve(folder, file.name));
+        }
+      }
+    }
+
+    await scanFolderForAstroFiles(path.resolve(folderPath, "src"));
+
+    for (const astroFilePath of astroFilePaths) {
+      const file = await fs.readFile(astroFilePath, {
+        encoding: "utf8",
+      });
+
+      // remove typescript interfaces and import type {} from './types'
+      const newAstroFile = file
+        .replace(/interface Props \{(.|\n)*?\}/g, "")
+        .replace('import type { Post } from "../utils/sanity";', "")
+        .replace(" as { slug: string }", "");
+
+      fs.writeFile(astroFilePath, newAstroFile);
+    }
+
     console.log("Finished");
   } catch (error) {
     console.log(error);
   }
 }
 
-await removeTypeScript(studioPath);
+// await removeTypeScript(studioPath);
+await removeTypeScript(appPath);
