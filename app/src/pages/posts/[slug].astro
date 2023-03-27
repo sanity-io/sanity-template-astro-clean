@@ -3,11 +3,10 @@ import { getPost, getPosts } from "../../utils/sanity";
 
 export async function getStaticPaths() {
   const posts = await getPosts();
-  return posts.map((post) => ({ params: { slug: post.slug?.current } }));
+  return posts.map((post) => ({ params: { slug: post.slug.current } }));
 }
 
 const { slug } = Astro.params as { slug: string };
-
 const post = await getPost(slug);
 ---
 

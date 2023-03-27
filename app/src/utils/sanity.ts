@@ -10,7 +10,7 @@ export const client = createClient({
 });
 
 export async function getPosts(): Promise<Post[]> {
-  return await client.fetch('*[_type == "post"]');
+  return await client.fetch('*[_type == "post" && defined(slug.current)]');
 }
 
 export async function getPost(slug: string): Promise<Post> {
@@ -22,7 +22,7 @@ export async function getPost(slug: string): Promise<Post> {
 export interface Post {
   _type: "post";
   title?: string;
-  slug?: Slug;
+  slug: Slug;
   mainImage?: ImageAsset;
   body: PortableTextBlock[];
 }

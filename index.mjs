@@ -7,8 +7,7 @@ const appPath = path.join(cwd(), "/app");
 const studioPath = path.join(cwd(), "/studio");
 
 // remove typescript
-const filesToRemove = ["tsconfig.*", "*.ts"];
-const depsToRemove = ["typescript", "ora"];
+const filesToRemove = ["tsconfig.*", "*.ts", "env.d.ts"];
 
 const execPromise = util.promisify(exec);
 
@@ -25,7 +24,7 @@ async function removeTypeScript(folderPath) {
     await execPromise(
       `npx rimraf -g ${filesToRemove.join(
         " "
-      )} && npx rimraf -g "!(node_modules)**/*.ts" && npm uninstall rimraf typescript`,
+      )} && npx rimraf -g "!(node_modules)**/**/*.ts" && npm uninstall rimraf typescript`,
       {
         cwd: folderPath,
       }
@@ -37,4 +36,4 @@ async function removeTypeScript(folderPath) {
   }
 }
 
-await removeTypeScript(studioPath);
+await removeTypeScript(appPath);

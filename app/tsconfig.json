@@ -21,7 +21,8 @@
     "incremental": true
   },
   "includes": [
-    "** /*.ts",
+    "**/*.ts",
+    "**/*.astro",
     "**/*.tsx"
   ],
   "exclude": [

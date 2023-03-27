@@ -1,7 +1,6 @@
 ---
 import Card from "../components/Card.astro";
 import Layout from "../layouts/Layout.astro";
-import type { Post } from "../utils/sanity";
 import { getPosts } from "../utils/sanity";
 
 const posts = await getPosts();
@@ -12,7 +11,7 @@ const posts = await getPosts();
     <h1>Astro with Sanity</h1>
     {
       posts.length ? (
-        posts.map((post: Post) => <Card post={post} />)
+        posts.map((post) => <Card post={post} />)
       ) : (
         <p>Go to the Sanity Studio to add posts</p>
       )

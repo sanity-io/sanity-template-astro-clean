@@ -3,7 +3,11 @@ import { PortableText } from "astro-portabletext";
 import { urlFor } from "../utils/image";
 import type { Post } from "../utils/sanity";
 
-const { post } = Astro.props as { post: Post };
+interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props;
 ---
 
 <div class="card">
@@ -26,20 +30,10 @@ const { post } = Astro.props as { post: Post };
 <style>
   .card {
     position: relative;
+    margin-bottom: 40px;
   }
 
   .card .link {
     color: var(--primary);
-    text-decoration: none;
-  }
-
-  /* .card .link::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-  } */
-
-  .card .link:hover {
-    text-decoration: underline;
   }
 </style>
