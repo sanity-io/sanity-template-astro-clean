@@ -41,18 +41,22 @@ async function removeTypeScript(folderPath) {
     const astroFilePaths = [];
 
     async function scanFolderForAstroFiles(folder) {
-      const files = await fs.readdir(path.resolve(folder), {
-        withFileTypes: true,
-      });
+      const files = await fs
+        .readdir(path.resolve(folder), {
+          withFileTypes: true,
+        })
+        .catch((err) => {});
 
-      for (const file of files) {
-        if (file.isFile() && file.name.endsWith(".astro")) {
-          astroFilePaths.push(path.resolve(folder, file.name));
-          continue;
-        }
+      if (files) {
+        for (const file of files) {
+          if (file.isFile() && file.name.endsWith(".astro")) {
+            astroFilePaths.push(path.resolve(folder, file.name));
+            continue;
+          }
 
-        if (file.isDirectory()) {
-          await scanFolderForAstroFiles(path.resolve(folder, file.name));
+          if (file.isDirectory()) {
+            await scanFolderForAstroFiles(path.resolve(folder, file.name));
+          }
         }
       }
     }
