@@ -70,9 +70,12 @@ async function removeTypeScript(folderPath) {
 
       // remove typescript interfaces and import type {} from './types'
       const newAstroFile = file
-        .replace(/interface Props \{(.|\n)*?\}/g, "")
-        .replace('import type { Post } from "../utils/sanity";', "")
-        .replace(" as { slug: string }", "");
+        .replace(/^\s*interface\s+Props\s*\{\s*[\s\S]*?\s*\}\s*$/gm, "")
+        .replace(
+          /^.*import\s+type\s*\{\s*Post\s*\}\s*from\s*"\.\.\/utils\/sanity".*\n?/gm,
+          ""
+        )
+        .replace(/ as\s*\{[\s\S]*?\}/gm, "");
 
       fs.writeFile(astroFilePath, newAstroFile);
     }
@@ -83,5 +86,5 @@ async function removeTypeScript(folderPath) {
   }
 }
 
-await removeTypeScript(studioPath);
+// await removeTypeScript(studioPath);
 await removeTypeScript(appPath);
