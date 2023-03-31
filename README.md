@@ -2,7 +2,7 @@
 
 This starter uses [Astro](https://astro.build/) for the frontend and [Sanity](https://sanity.io/) to handle its content.
 
-Featuring:
+## Featuring
 
 - How to fetch content as data from [the Sanity Content Lake](https://www.sanity.io/docs/datastore)
 - How to render block content with [Portable Text](https://www.sanity.io/docs/presenting-block-text)
