@@ -68,14 +68,15 @@ async function removeTypeScript(folderPath) {
         encoding: "utf8",
       });
 
-      // remove typescript interfaces and import type {} from './types'
+      // remove typescript
       const newAstroFile = file
-        .replace(/^\s*interface\s+Props\s*\{\s*[\s\S]*?\s*\}\s*$/gm, "")
+        .replace(/^\s*interface\s+\w+\s*\{\s*[\s\S]*?\s*\}\s*$/gm, "")
+        .replace(/^type\s+.*?;\s*$/gm, "")
         .replace(
           /^.*import\s+type\s*\{\s*Post\s*\}\s*from\s*"\.\.\/utils\/sanity".*\n?/gm,
           ""
         )
-        .replace(/ as\s*\{[\s\S]*?\}/gm, "");
+        .replace(/as\s+(?:{\s*.*?\s*}|[\w]+);/gm, "");
 
       fs.writeFile(astroFilePath, newAstroFile);
     }

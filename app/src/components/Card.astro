@@ -1,5 +1,5 @@
 ---
-import { PortableText } from "astro-portabletext";
+import { formatDate } from "../utils";
 import { urlFor } from "../utils/image";
 import type { Post } from "../utils/sanity";
 
@@ -11,29 +11,139 @@ const { post } = Astro.props;
 ---
 
 <div class="card">
-  <h2>
-    <a
-      class="link"
-      href={`/posts/${post.slug?.current}`}
-    >
-      {post.title}
-    </a>
-  </h2>
+  <div></div>
   {
-    post.mainImage && (
-      <img src={urlFor(post.mainImage).width(500).height(300).url()} />
+    post.mainImage ? (
+      <img
+        class="cover"
+        src={urlFor(post.mainImage).width(500).height(300).url()}
+        alt="Cover image"
+      />
+    ) : (
+      <div class="no-image" />
     )
   }
-  <PortableText value={post.body} />
+  <div class="meta">
+    <h3 class="title">
+      <a
+        class="link"
+        href={`/post/${post.slug.current}`}
+      >
+        {post.title}
+      </a>
+    </h3>
+    <p class="excerpt">{post.excerpt}</p>
+    <p class="date">
+      {formatDate(post._createdAt)}
+    </p>
+  </div>
 </div>
 
 <style>
-  .card {
-    position: relative;
-    margin-bottom: 40px;
+  .title {
+    font-family: var(--font-family-sans);
+    font-weight: 800;
+    font-size: var(--font-size-7);
+    line-height: var(--line-height-6);
+    letter-spacing: -0.025em;
+    margin: var(--space-3) 0;
   }
 
-  .card .link {
-    color: var(--primary);
+  .excerpt {
+    font-family: var(--font-family-serif);
+    font-weight: 400;
+    font-size: var(--font-size-4);
+    line-height: var(--line-height-3);
+    margin-top: 0;
+  }
+
+  .date {
+    font-weight: 600;
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-1);
+    margin-top: calc(var(----space-4) + 7);
+  }
+
+  .link {
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .link:hover {
+    opacity: 0.8;
+    transition: 0.2s;
+  }
+
+  .link::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+  }
+
+  .cover {
+    width: 366.5px;
+    height: 231px;
+    object-fit: cover;
+  }
+
+  .no-image {
+    min-width: 366.5px;
+    height: 231px;
+    background: var(--black);
+  }
+
+  .card {
+    display: flex;
+    margin-bottom: -1px;
+    padding: 9px;
+    border: 1px solid #ced2d9;
+
+    position: relative;
+  }
+
+  .meta {
+    margin-left: var(--space-4);
+  }
+
+  .card:first-child {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+  }
+
+  .card:last-child {
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+  }
+
+  @media (max-width: 800px) {
+    .card {
+      flex-direction: column;
+      padding: var(--space-2);
+    }
+
+    .title {
+      margin-top: var(--space-4);
+    }
+
+    .cover,
+    .no-image {
+      width: 100%;
+      height: 204px;
+      min-width: unset;
+    }
+
+    .meta {
+      margin: 0 var(--space-4) 0;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .card {
+      border-left: none;
+      border-right: none;
+    }
+    .meta {
+      margin: 0 var(--space-2) 0;
+    }
   }
 </style>

@@ -16,11 +16,11 @@
     "sanity"
   ],
   "dependencies": {
-    "@sanity/vision": "^3.0.0",
+    "@sanity/vision": "^3.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-is": "^18.2.0",
-    "sanity": "^3.0.0",
+    "sanity": "^3.8.1",
     "styled-components": "^5.2.0"
   },
   "devDependencies": {
@@ -37,5 +37,8 @@
     "printWidth": 100,
     "bracketSpacing": false,
     "singleQuote": true
+  },
+  "engines": {
+    "node": ">= 14.18"
   }
 }

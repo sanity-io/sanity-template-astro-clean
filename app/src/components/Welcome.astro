@@ -1,0 +1,149 @@
+---
+---
+
+<div class="wrapper">
+  <div class="logos">
+    <div class="blur"></div>
+    <img
+      src="/astro.svg"
+      alt="Astro Logo"
+    />
+    <span class="plus">+</span>
+    <img
+      src="/sanity.svg"
+      alt="Sanity Logo"
+    />
+  </div>
+  <div class="steps">
+    <h2>Next steps</h2>
+    <ul>
+      <li>
+        <h3>Customize your Sanity Studio</h3>
+        <p>
+          The code for your app is on <a href="#">GitHub</a>, and make sure to
+          check out the Sanity Docs.
+        </p>
+      </li>
+      <li>
+        <h3>Start building your frontend</h3>
+        <p>
+          Check out <a href="#">the guide</a> for using Astro with Sanity.
+        </p>
+      </li>
+      <li>
+        <h3>Join the Sanity Community</h3>
+        <p>
+          Leverage <a href="#">our awesome community</a>, and share tips and
+          discuss!
+        </p>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<style>
+  .logos {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: var(--space-4), var(--space-5);
+  }
+
+  .blur {
+    position: absolute;
+    width: 375px;
+    height: 115px;
+    background: var(--magenta-100);
+    filter: blur(82px);
+    transform: rotate(-19deg);
+    z-index: -1;
+  }
+
+  .plus {
+    font-family: var(--font-family-sans);
+    font-weight: 800;
+    font-size: var(--font-size-7);
+    line-height: var(--line-height-6);
+    margin: 0 var(--space-4);
+  }
+
+  .steps {
+    max-width: var(--max-width-0);
+    margin-top: var(--space-6);
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: var(--space-6) 0;
+  }
+
+  a {
+    color: var(--blue-600);
+    text-decoration: none;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  li {
+    margin-bottom: var(--space-4);
+  }
+
+  ul h3 {
+    font-size: var(--font-size-3);
+    line-height: var(--line-height-2);
+  }
+
+  ul p {
+    font-family: var(--font-family-serif);
+    line-height: var(--line-height-2);
+  }
+
+  @media (max-width: 800px) {
+    .flex {
+      justify-content: flex-start;
+      width: 100%;
+    }
+
+    .steps {
+      max-width: unset;
+      width: 100%;
+      padding: 0 var(--space-4);
+      margin-top: var(--space-5);
+    }
+
+    img,
+    .blur,
+    .logos,
+    .plus {
+      display: none;
+    }
+
+    .wrapper {
+      width: 100%;
+      margin: var(--space-1) 0 var(--space-4);
+    }
+  }
+
+  @media (max-width: 575px) {
+    .logos,
+    .steps {
+      margin-top: var(--space-0);
+    }
+
+    h2,
+    ul {
+      padding: 0 var(--space-2);
+    }
+
+    .plus,
+    img {
+      display: none;
+    }
+  }
+</style>

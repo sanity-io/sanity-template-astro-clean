@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "astro check && tsc --noEmit && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "remove-typescript": "tsc && prettier --write . && eslint --fix"
@@ -13,8 +13,9 @@
   "dependencies": {
     "@sanity/client": "^5.3.0",
     "@sanity/image-url": "^1.0.2",
-    "astro": "^2.0.18",
+    "astro": "^2.1.7",
     "astro-portabletext": "^0.8.0",
+    "groq": "^3.8.1",
     "prettier-plugin-astro": "^0.8.0"
   },
   "devDependencies": {
@@ -24,5 +25,8 @@
     "prettier": "^2.8.4",
     "rimraf": "^4.4.1",
     "typescript": "^5.0.2"
+  },
+  "engines": {
+    "node": ">= 16.12"
   }
 }

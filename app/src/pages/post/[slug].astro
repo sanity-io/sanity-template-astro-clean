@@ -1,0 +1,154 @@
+---
+import type { InferGetStaticParamsType } from "astro";
+import Layout from "../../layouts/Layout.astro";
+import { getPost, getPosts } from "../../utils/sanity";
+import { PortableText } from "astro-portabletext";
+import { urlFor } from "../../utils/image";
+import { formatDate } from "../../utils";
+import { mergeComponents } from "astro-portabletext/utils";
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post) => ({
+    params: { slug: post.slug.current },
+  }));
+}
+
+type Params = InferGetStaticParamsType<typeof getStaticPaths>;
+const { slug } = Astro.params as Params;
+
+const post = await getPost(slug);
+---
+
+<Layout title={post.title!}>
+  <section>
+    {
+      post.mainImage ? (
+        <img
+          class="cover"
+          src={urlFor(post.mainImage).url()}
+          alt="Article cover"
+        />
+      ) : (
+        <div class="no-image" />
+      )
+    }
+    <div class="wrapper">
+      <h1 class="title">{post.title}</h1>
+      <p class="excerpt">{post.excerpt}</p>
+      <p class="date">
+        {formatDate(post._createdAt)}
+      </p>
+      <div class="content">
+        <PortableText value={post.body} />
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  section {
+    margin: var(--space-5) 0;
+  }
+
+  .title {
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-10);
+    line-height: var(--line-height-10);
+    margin: var(--space-6) 0 0;
+    letter-spacing: -0.025em;
+    font-weight: 800;
+  }
+
+  .excerpt {
+    font-family: var(--font-family-serif);
+    font-weight: 400;
+    font-size: var(--font-size-5);
+    line-height: var(--line-height-5);
+    margin-top: var(--space-3);
+    margin-bottom: var(--space-3);
+  }
+
+  .date {
+    font-weight: 600;
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-3);
+    line-height: var(--line-height-2);
+    margin-top: var(--space-0);
+  }
+
+  .no-image {
+    width: 750px;
+    height: 380px;
+    background: var(--black);
+  }
+
+  .cover {
+    width: 750px;
+    height: 380px;
+    object-fit: cover;
+  }
+
+  /* Targeting tags in PortableText */
+  .content {
+    font-family: var(--font-family-serif);
+    font-weight: 400;
+    font-size: var(--font-size-4);
+    line-height: var(--line-height-5);
+    letter-spacing: -0.02em;
+    margin-top: var(--space-6);
+  }
+
+  .content blockquote {
+    border-left: 5px solid var(--black);
+    padding-left: var(--space-3);
+    margin-left: var(--space-4);
+  }
+
+  .content a {
+    color: var(--blue-600);
+    text-decoration: none;
+  }
+
+  @media (max-width: 800px) {
+    .cover,
+    .no-image {
+      width: 100%;
+    }
+
+    .title {
+      font-size: var(--font-size-7);
+      line-height: var(--line-height-6);
+      margin: var(--space-4) 0;
+    }
+
+    .excerpt {
+      font-size: var(--font-size-5);
+      line-height: var(--line-height-4);
+      margin-top: 0;
+    }
+
+    .date {
+      font-family: var(--font-family-sans);
+      font-size: var(--font-size-1);
+      line-height: var(--line-height-1);
+      margin-top: var(--space-4);
+    }
+
+    section {
+      width: 100%;
+      margin: var(--space-1) 0 var(--space-4);
+    }
+  }
+
+  @media (max-width: 575px) {
+    .cover,
+    .no-image {
+      height: 200px;
+    }
+
+    .wrapper {
+      padding: 0 var(--space-4);
+    }
+  }
+</style>
