@@ -20,5 +20,5 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
-# TS junk
-tsconfig.tsbuildinfo
+# Typescript
+*.tsbuildinfo
