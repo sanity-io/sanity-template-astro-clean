@@ -18,7 +18,7 @@ async function removeTypeScript(folderPath) {
   try {
     // installs
     await execPromise(
-      "npm install && tsc && prettier --write . && eslint --fix",
+      "npm install && npx tsc && npx prettier --write . && npx eslint --fix",
       {
         cwd: folderPath,
       }
@@ -33,12 +33,6 @@ async function removeTypeScript(folderPath) {
         cwd: folderPath,
       }
     );
-
-    // remove scripts from package.json
-    const packageJsonPath = path.resolve(folderPath, "package.json");
-    const pkg = JSON.parse(await fs.readFile(packageJsonPath, "utf8"));
-    delete pkg.scripts["remove-typescript"];
-    await fs.writeFile(packageJsonPath, JSON.stringify(pkg, null, 2));
 
     // recursively loop through src folder to find all astro file paths
     const astroFilePaths = [];
