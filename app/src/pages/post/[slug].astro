@@ -20,25 +20,25 @@ const post = await getPost(slug);
 ---
 
 <Layout title={post.title!}>
-  <section>
+  <section class="card">
     {
       post.mainImage ? (
         <img
-          class="cover"
+          class="card__cover"
           src={urlFor(post.mainImage).url()}
           alt="Article cover"
         />
       ) : (
-        <div class="no-image" />
+        <div class="card__cover--none" />
       )
     }
-    <div class="wrapper">
-      <h1 class="title">{post.title}</h1>
-      <p class="excerpt">{post.excerpt}</p>
-      <p class="date">
+    <div class="card__content">
+      <h1 class="card__content--title">{post.title}</h1>
+      <p class="card__content--excerpt">{post.excerpt}</p>
+      <p class="card__content--date">
         {formatDate(post._createdAt)}
       </p>
-      <div class="content">
+      <div class="card__portabletext">
         <PortableText value={post.body} />
       </div>
     </div>
@@ -46,11 +46,11 @@ const post = await getPost(slug);
 </Layout>
 
 <style>
-  section {
+  .card {
     margin: var(--space-5) 0;
   }
 
-  .title {
+  .card__content--title {
     font-family: var(--font-family-sans);
     font-size: var(--font-size-10);
     line-height: var(--line-height-10);
@@ -59,7 +59,7 @@ const post = await getPost(slug);
     font-weight: 800;
   }
 
-  .excerpt {
+  .card__content--excerpt {
     font-family: var(--font-family-serif);
     font-weight: 400;
     font-size: var(--font-size-5);
@@ -68,7 +68,7 @@ const post = await getPost(slug);
     margin-bottom: var(--space-3);
   }
 
-  .date {
+  .card__content--date {
     font-weight: 600;
     font-family: var(--font-family-sans);
     font-size: var(--font-size-3);
@@ -76,20 +76,20 @@ const post = await getPost(slug);
     margin-top: var(--space-0);
   }
 
-  .no-image {
-    width: 750px;
-    height: 380px;
-    background: var(--black);
-  }
-
-  .cover {
+  .card__cover {
     width: 750px;
     height: 380px;
     object-fit: cover;
   }
 
+  .card__cover--none {
+    width: 750px;
+    height: 380px;
+    background: var(--black);
+  }
+
   /* Targeting tags in PortableText */
-  .content {
+  .card__portabletext {
     font-family: var(--font-family-serif);
     font-weight: 400;
     font-size: var(--font-size-4);
@@ -98,55 +98,55 @@ const post = await getPost(slug);
     margin-top: var(--space-6);
   }
 
-  .content blockquote {
+  .card__portabletext blockquote {
     border-left: 5px solid var(--black);
     padding-left: var(--space-3);
     margin-left: var(--space-4);
   }
 
-  .content a {
+  .card__portabletext a {
     color: var(--blue-600);
     text-decoration: none;
   }
 
   @media (max-width: 800px) {
-    .cover,
-    .no-image {
+    .card__cover,
+    .card__cover--none {
       width: 100%;
     }
 
-    .title {
+    .card__cover--title {
       font-size: var(--font-size-7);
       line-height: var(--line-height-6);
       margin: var(--space-4) 0;
     }
 
-    .excerpt {
+    .card__cover--excerpt {
       font-size: var(--font-size-5);
       line-height: var(--line-height-4);
       margin-top: 0;
     }
 
-    .date {
+    .card__cover--date {
       font-family: var(--font-family-sans);
       font-size: var(--font-size-1);
       line-height: var(--line-height-1);
       margin-top: var(--space-4);
     }
 
-    section {
+    .card {
       width: 100%;
       margin: var(--space-1) 0 var(--space-4);
     }
   }
 
   @media (max-width: 575px) {
-    .cover,
-    .no-image {
+    .card__cover,
+    .card__cover--none {
       height: 200px;
     }
 
-    .wrapper {
+    .card__content {
       padding: 0 var(--space-4);
     }
   }

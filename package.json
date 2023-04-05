@@ -1,0 +1,8 @@
+{
+  "name": "sanity-template-astro-clean",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "postinstall": "echo '\u001b[0;31mThis is not a monorepo. Run commands in /app and /studio individually.\u001b[0m'"
+  }
+}

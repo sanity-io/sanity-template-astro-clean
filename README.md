@@ -13,7 +13,7 @@ This starter uses [Astro](https://astro.build/) for the frontend and [Sanity](ht
 >
 > This starter features an `/app` and a `/studio` folder. The `/app` folder contains the frontend code, and the `/studio` folder contains the Sanity Studio code.
 >
-> This is **not** a monorepo setup. We put them both in one repository for the sake of simplicity. Ideally, you should have separate repositories for each of the folders. This is to make it easier to deploy the app and the studio separately.
+> This is **not** a monorepo setup. We put them both in one repository for the sake of simplicity. You might want to have separate repositories for each of the folders, to make it easier to deploy the app and the studio separately.
 
 ## Prerequisities
 
@@ -25,16 +25,15 @@ This starter uses [Astro](https://astro.build/) for the frontend and [Sanity](ht
 The following commands are meant to be run in **both** the `/app` and `/studio` folders.
 
 1. `npm install` to install dependencies
-2. `sanity init --env` _(or `npm create sanity@latest --init env` if you don't have the CLI installed)_ to set up an existing or create a new Sanity project and output an .env file with the appropriate variables
+2. `sanity init --env`, this will:
+   a. ask you to select or create a Sanity project and dataset
+   b. output a `.env` file with appropriate variables
+   c. _(use or `npm create sanity@latest --init env` if you don't have the CLI installed)_
 3. `npm run dev` to start the development server
 
 Your Astro app should now be running on [http://localhost:3000/](http://localhost:3000/) and Studio on [http://localhost:3333/](http://localhost:3333/).
 
 _Feel free to move each of the folders to their own location and check them into version control._
-
-> **Warning**
->
-> If you do not wish to use TypeScript, we've included a `index.mjs` file in the root of this repository. You can run this file with `node index.mjs` to strip all types from both the `/app` and `/studio` folders. Please run this before tampering with any code to ensure that all types are properly removed.
 
 ### Add content
 
@@ -42,6 +41,12 @@ _Feel free to move each of the folders to their own location and check them into
 2. Visit the App and refresh the page to see your content rendered on the page
 
 The schema for the `Post` document is defined in the `/studio/schemas` folder. You can add more documents and schemas to the Studio to suit your needs.
+
+## Removing TypeScript
+
+If you do not wish to use TypeScript, we've included a `remove-typescript.mjs` file in the root of this repository. You can run this file with `node remove-typescript.mjs` to strip all types from both the `/app` and `/studio` folders. Please run this before tampering with any code to ensure that all types are properly removed.
+
+If you intend to use TypeScript, you can safely remove the `remove-typescript.mjs` file.
 
 ## Deployments
 

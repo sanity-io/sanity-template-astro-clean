@@ -15,6 +15,7 @@
     "@sanity/image-url": "^1.0.2",
     "astro": "^2.1.7",
     "astro-portabletext": "^0.8.0",
+    "autoprefixer": "^10.4.14",
     "groq": "^3.8.1",
     "prettier-plugin-astro": "^0.8.0"
   },

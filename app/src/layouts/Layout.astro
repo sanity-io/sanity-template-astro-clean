@@ -43,13 +43,17 @@ const { title } = Astro.props;
   </head>
   <body>
     <div class="container">
-      <header class="flex">
-        <a href="/">Astro + Sanity</a>
+      <header class="header">
+        <a
+          class="header__title"
+          href="/"
+          >Astro + Sanity</a
+        >
       </header>
       <main>
         <slot />
       </main>
-      <footer class="flex">
+      <footer class="footer">
         <p>
           Made with <svg
             data-sanity-icon="heart-filled"
@@ -72,24 +76,13 @@ const { title } = Astro.props;
 </html>
 
 <style>
-  .flex {
+  .header {
     display: flex;
     align-items: center;
-    position: relative;
     padding: var(--space-4), var(--space-5);
   }
-  main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
 
-  footer {
-    justify-content: flex-end;
-  }
-
-  a {
+  .header__title {
     text-decoration: none;
     color: var(--black);
     margin-top: var(--space-4);
@@ -97,12 +90,14 @@ const { title } = Astro.props;
     font-weight: 800;
   }
 
-  .container {
-    max-width: var(--max-width-1);
-    margin: 0 auto;
+  .footer {
+    display: flex;
+    align-items: center;
+    padding: var(--space-4), var(--space-5);
+    justify-content: flex-end;
   }
 
-  p {
+  .footer__text {
     font-size: var(--font-size-1);
     line-height: var(--line-height-1);
     display: flex;
@@ -110,18 +105,28 @@ const { title } = Astro.props;
     gap: 2px;
   }
 
+  .container {
+    max-width: var(--max-width-1);
+    margin: 0 auto;
+  }
+  main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
   @media (max-width: 800px) {
     .container {
       padding: 0 var(--space-4);
     }
 
-    a {
+    .header__title {
       margin: var(--space-3) 0;
     }
   }
 
   @media (max-width: 575px) {
-    a {
+    .header__title {
       font-size: var(--font-size-3);
       line-height: var(--line-height-1);
       padding-left: var(--space-2);
@@ -132,7 +137,7 @@ const { title } = Astro.props;
       padding: 0;
     }
 
-    footer p {
+    .footer__text {
       padding: 0 var(--space-4);
       margin-top: var(--space-0);
     }
@@ -196,6 +201,7 @@ const { title } = Astro.props;
   html {
     background-color: var(--white);
     font-family: var(--font-family-sans), var(--font-family-serif), sans-serif;
+    text-size-adjust: 100%;
   }
 
   body {
