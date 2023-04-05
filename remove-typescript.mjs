@@ -17,9 +17,12 @@ async function removeTypeScript(folderPath) {
 
   try {
     // installs
-    await execPromise("npm install && npm run remove-typescript", {
-      cwd: folderPath,
-    });
+    await execPromise(
+      "npm install && tsc && prettier --write . && eslint --fix",
+      {
+        cwd: folderPath,
+      }
+    );
 
     // remove files
     await execPromise(

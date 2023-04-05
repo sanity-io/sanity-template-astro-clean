@@ -9,8 +9,7 @@
     "start": "sanity start",
     "build": "sanity build",
     "deploy": "sanity deploy",
-    "deploy-graphql": "sanity graphql deploy",
-    "remove-typescript": "tsc && prettier --write . && eslint --fix"
+    "deploy-graphql": "sanity graphql deploy"
   },
   "keywords": [
     "sanity"

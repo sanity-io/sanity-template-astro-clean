@@ -7,8 +7,7 @@
     "start": "astro dev",
     "build": "astro check && tsc --noEmit && astro build",
     "preview": "astro preview",
-    "astro": "astro",
-    "remove-typescript": "tsc && prettier --write . && eslint --fix"
+    "astro": "astro"
   },
   "dependencies": {
     "@sanity/client": "^5.3.0",
