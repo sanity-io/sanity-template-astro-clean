@@ -54,7 +54,7 @@ const { title } = Astro.props;
         <slot />
       </main>
       <footer class="footer">
-        <p>
+        <p class="footer__text">
           Made with <svg
             data-sanity-icon="heart-filled"
             width="1em"
@@ -76,70 +76,59 @@ const { title } = Astro.props;
 </html>
 
 <style>
-  .header {
-    display: flex;
-    align-items: center;
-    padding: var(--space-4), var(--space-5);
+  .container {
+    margin: 0 auto;
   }
 
-  .header__title {
-    text-decoration: none;
-    color: var(--black);
-    margin-top: var(--space-4);
-    font-size: var(--font-size-5);
-    font-weight: 800;
+  .header {
+    display: flex;
+    padding: 0 var(--space-1);
+    border-bottom: 1px solid #ced2d9;
+
+    & .header__title {
+      font-weight: 800;
+      font-size: var(--font-size-3);
+      line-height: var(--line-height-1);
+      padding-left: var(--space-2);
+      margin: var(--space-3) 0;
+      text-decoration: none;
+      color: var(--black);
+    }
   }
 
   .footer {
     display: flex;
-    align-items: center;
-    padding: var(--space-4), var(--space-5);
     justify-content: flex-end;
-  }
+    padding: 0 var(--space-3);
 
-  .footer__text {
-    font-size: var(--font-size-1);
-    line-height: var(--line-height-1);
-    display: flex;
-    align-items: center;
-    gap: 2px;
-  }
-
-  .container {
-    max-width: var(--max-width-1);
-    margin: 0 auto;
-  }
-  main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
-  @media (max-width: 800px) {
-    .container {
-      padding: 0 var(--space-4);
-    }
-
-    .header__title {
-      margin: var(--space-3) 0;
-    }
-  }
-
-  @media (max-width: 575px) {
-    .header__title {
-      font-size: var(--font-size-3);
+    & .footer__text {
+      font-size: var(--font-size-1);
       line-height: var(--line-height-1);
-      padding-left: var(--space-2);
-      margin: var(--space-3) 0 var(--space-2);
+      display: flex;
+      align-items: center;
+      gap: 2px;
     }
+  }
 
+  @media (min-width: 575px) {
     .container {
-      padding: 0;
+      max-width: var(--max-width-1);
+      padding: 0 var(--space-4);
     }
 
-    .footer__text {
-      padding: 0 var(--space-4);
-      margin-top: var(--space-0);
+    .header {
+      border-bottom: none;
+      margin: var(--space-3) 0;
+      padding: var(--space-2) 0;
+
+      & .header__title {
+        margin: var(--space-3) 0 var(--space-2);
+        font-size: var(--font-size-5);
+      }
+    }
+
+    .footer {
+      margin: var(--space-3) 0;
     }
   }
 </style>

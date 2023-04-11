@@ -20,25 +20,25 @@ const post = await getPost(slug);
 ---
 
 <Layout title={post.title!}>
-  <section class="card">
+  <section class="post">
     {
       post.mainImage ? (
         <img
-          class="card__cover"
+          class="post__cover"
           src={urlFor(post.mainImage).url()}
-          alt="Article cover"
+          alt="Cover image"
         />
       ) : (
-        <div class="card__cover--none" />
+        <div class="post__cover--none" />
       )
     }
-    <div class="card__content">
-      <h1 class="card__content--title">{post.title}</h1>
-      <p class="card__content--excerpt">{post.excerpt}</p>
-      <p class="card__content--date">
+    <div class="post__container">
+      <h1 class="post__title">{post.title}</h1>
+      <p class="post__excerpt">{post.excerpt}</p>
+      <p class="post__date">
         {formatDate(post._createdAt)}
       </p>
-      <div class="card__portabletext">
+      <div class="post__content">
         <PortableText value={post.body} />
       </div>
     </div>
@@ -46,108 +46,103 @@ const post = await getPost(slug);
 </Layout>
 
 <style>
-  .card {
-    margin: var(--space-5) 0;
-  }
+  .post {
+    width: 100%;
+    margin: var(--space-1) 0 var(--space-4);
 
-  .card__content--title {
-    font-family: var(--font-family-sans);
-    font-size: var(--font-size-10);
-    line-height: var(--line-height-10);
-    margin: var(--space-6) 0 0;
-    letter-spacing: -0.025em;
-    font-weight: 800;
-  }
-
-  .card__content--excerpt {
-    font-family: var(--font-family-serif);
-    font-weight: 400;
-    font-size: var(--font-size-5);
-    line-height: var(--line-height-5);
-    margin-top: var(--space-3);
-    margin-bottom: var(--space-3);
-  }
-
-  .card__content--date {
-    font-weight: 600;
-    font-family: var(--font-family-sans);
-    font-size: var(--font-size-3);
-    line-height: var(--line-height-2);
-    margin-top: var(--space-0);
-  }
-
-  .card__cover {
-    width: 750px;
-    height: 380px;
-    object-fit: cover;
-  }
-
-  .card__cover--none {
-    width: 750px;
-    height: 380px;
-    background: var(--black);
-  }
-
-  /* Targeting tags in PortableText */
-  .card__portabletext {
-    font-family: var(--font-family-serif);
-    font-weight: 400;
-    font-size: var(--font-size-4);
-    line-height: var(--line-height-5);
-    letter-spacing: -0.02em;
-    margin-top: var(--space-6);
-  }
-
-  .card__portabletext blockquote {
-    border-left: 5px solid var(--black);
-    padding-left: var(--space-3);
-    margin-left: var(--space-4);
-  }
-
-  .card__portabletext a {
-    color: var(--blue-600);
-    text-decoration: none;
-  }
-
-  @media (max-width: 800px) {
-    .card__cover,
-    .card__cover--none {
+    & .post__cover,
+    & .post__cover--none {
       width: 100%;
+      height: 200px;
+      object-fit: cover;
     }
 
-    .card__cover--title {
+    & .post__cover--none {
+      background: var(--black);
+    }
+
+    & .post__container {
+      padding: 0 var(--space-3);
+    }
+
+    & .post__content {
+      font-family: var(--font-family-serif);
+      font-weight: 400;
+      font-size: var(--font-size-4);
+      line-height: var(--line-height-5);
+      letter-spacing: -0.02em;
+      margin-top: var(--space-6);
+
+      /* Targeting tags in PortableText */
+      & blockquote {
+        border-left: 5px solid var(--black);
+        padding-left: var(--space-3);
+        margin-left: var(--space-4);
+      }
+
+      & a {
+        color: var(--blue-600);
+        text-decoration: none;
+      }
+    }
+
+    & .post__title {
+      font-family: var(--font-family-sans);
       font-size: var(--font-size-7);
       line-height: var(--line-height-6);
       margin: var(--space-4) 0;
+      font-weight: 800;
     }
 
-    .card__cover--excerpt {
+    & .post__excerpt {
+      font-family: var(--font-family-serif);
       font-size: var(--font-size-5);
       line-height: var(--line-height-4);
       margin-top: 0;
+      font-weight: 400;
     }
 
-    .card__cover--date {
+    & .post__date {
+      font-family: var(--font-family-sans);
+      font-weight: 600;
       font-family: var(--font-family-sans);
       font-size: var(--font-size-1);
       line-height: var(--line-height-1);
       margin-top: var(--space-4);
     }
-
-    .card {
-      width: 100%;
-      margin: var(--space-1) 0 var(--space-4);
-    }
   }
 
-  @media (max-width: 575px) {
-    .card__cover,
-    .card__cover--none {
-      height: 200px;
-    }
+  @media (min-width: 800px) {
+    .post {
+      & .post__cover,
+      & .post__cover--none {
+        width: 750px;
+        height: 380px;
+      }
 
-    .card__content {
-      padding: 0 var(--space-4);
+      & .post__title {
+        font-size: var(--font-size-10);
+        line-height: var(--line-height-10);
+        margin: var(--space-6) 0 0;
+        letter-spacing: -0.025em;
+      }
+
+      & .post__excerpt {
+        font-size: var(--font-size-5);
+        line-height: var(--line-height-5);
+        margin-top: var(--space-3);
+        margin-bottom: var(--space-3);
+      }
+
+      & .post__date {
+        font-size: var(--font-size-3);
+        line-height: var(--line-height-2);
+        margin-top: var(--space-0);
+      }
+
+      & .post__content {
+        margin-top: var(--space-7);
+      }
     }
   }
 </style>

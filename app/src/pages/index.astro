@@ -12,16 +12,3 @@ const posts = await getPosts();
     {posts.length ? posts.map((post) => <Card post={post} />) : <Welcome />}
   </section>
 </Layout>
-
-<style>
-  section {
-    margin: var(--space-5) 0;
-    width: 100%;
-  }
-
-  @media (max-width: 800px) {
-    section {
-      margin: var(--space-1) 0 var(--space-4);
-    }
-  }
-</style>

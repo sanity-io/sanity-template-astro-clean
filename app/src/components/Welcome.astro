@@ -1,38 +1,40 @@
 ---
 ---
 
-<div class="welcome">
+<div class="container">
   <div class="logos">
-    <div class="blur"></div>
+    <div class="logos__blur"></div>
     <img
+      class="logos__entry"
       src="/astro.svg"
       alt="Astro Logo"
     />
-    <span class="plus">+</span>
+    <span class="logos__plus">+</span>
     <img
+      class="logos__entry"
       src="/sanity.svg"
       alt="Sanity Logo"
     />
   </div>
   <div class="steps">
-    <h2>Next steps</h2>
-    <ul>
-      <li>
-        <h3>Customize your Sanity Studio</h3>
-        <p>
+    <h2 class="steps__title">Next steps</h2>
+    <ul class="steps__list">
+      <li class="steps__entry">
+        <h3 class="steps__subtitle">Customize your Sanity Studio</h3>
+        <p class="steps__text">
           The code for your app is on <a href="#">GitHub</a>, and make sure to
           check out the Sanity Docs.
         </p>
       </li>
-      <li>
-        <h3>Start building your frontend</h3>
-        <p>
+      <li class="steps__entry">
+        <h3 class="step__title">Start building your frontend</h3>
+        <p class="steps__text">
           Check out <a href="#">the guide</a> for using Astro with Sanity.
         </p>
       </li>
-      <li>
-        <h3>Join the Sanity Community</h3>
-        <p>
+      <li class="steps__entry">
+        <h3 class="steps__subtitle">Join the Sanity Community</h3>
+        <p class="steps__text">
           Leverage <a href="#">our awesome community</a>, and share tips and
           discuss!
         </p>
@@ -42,108 +44,98 @@
 </div>
 
 <style>
-  .logos {
-    display: flex;
-    align-items: center;
-    position: relative;
-    padding: var(--space-4), var(--space-5);
-  }
-
-  .blur {
-    position: absolute;
-    width: 375px;
-    height: 115px;
-    background: var(--magenta-100);
-    filter: blur(82px);
-    transform: rotate(-19deg);
-    z-index: -1;
-  }
-
-  .plus {
-    font-family: var(--font-family-sans);
-    font-weight: 800;
-    font-size: var(--font-size-7);
-    line-height: var(--line-height-6);
-    margin: 0 var(--space-4);
-  }
-
-  .steps {
-    max-width: var(--max-width-0);
-    margin-top: var(--space-6);
-  }
-
-  .welcome {
+  .container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: var(--space-2) var(--space-2);
+  }
+
+  .logos {
+    display: none;
+  }
+
+  .steps {
+    flex-direction: column;
     width: 100%;
-    margin: var(--space-6) 0;
+
+    & .steps__list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    & .steps__entry {
+      margin-bottom: var(--space-4);
+    }
+
+    & .steps__title {
+      font-size: var(--font-size-5);
+      line-height: var(--line-height-2);
+    }
+
+    & .steps__subtitle {
+      font-size: var(--font-size-3);
+      line-height: var(--line-height-2);
+    }
+
+    & .steps__text {
+      font-family: var(--font-family-serif);
+      line-height: var(--line-height-2);
+
+      & a {
+        color: var(--blue-600);
+        text-decoration: none;
+      }
+    }
   }
 
-  a {
-    color: var(--blue-600);
-    text-decoration: none;
-  }
-
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-
-  li {
-    margin-bottom: var(--space-4);
-  }
-
-  ul h3 {
-    font-size: var(--font-size-3);
-    line-height: var(--line-height-2);
-  }
-
-  ul p {
-    font-family: var(--font-family-serif);
-    line-height: var(--line-height-2);
-  }
-
-  @media (max-width: 800px) {
-    .flex {
-      justify-content: flex-start;
+  @media (min-width: 575px) {
+    .container {
       width: 100%;
+    }
+
+    .logos {
+      display: flex;
+      align-items: center;
+      margin: var(--space-6) 0 var(--space-5) 0;
+
+      & .logos__blur {
+        display: flex;
+        position: absolute;
+        width: 375px;
+        height: 115px;
+        background: var(--magenta-100);
+        filter: blur(82px);
+        transform: rotate(-19deg);
+        z-index: -1;
+      }
+
+      & .logos__plus {
+        display: flex;
+        font-family: var(--font-family-sans);
+        font-weight: 800;
+        font-size: var(--font-size-7);
+        line-height: var(--line-height-6);
+        margin: 0 var(--space-4);
+      }
+
+      & .logos__entry {
+        display: flex;
+      }
     }
 
     .steps {
-      max-width: unset;
-      width: 100%;
-      padding: 0 var(--space-4);
-      margin-top: var(--space-5);
-    }
+      max-width: var(--max-width-0);
+      display: flex;
+      padding: 0;
 
-    img,
-    .blur,
-    .logos,
-    .plus {
-      display: none;
-    }
+      & .steps__subtitle {
+        margin-top: var(--space-4);
+      }
 
-    .welcome {
-      width: 100%;
-      margin: var(--space-1) 0 var(--space-4);
-    }
-  }
-
-  @media (max-width: 575px) {
-    .logos,
-    .steps {
-      margin-top: var(--space-0);
-    }
-
-    h2,
-    ul {
-      padding: 0 var(--space-2);
-    }
-
-    .plus,
-    img {
-      display: none;
+      & .steps__list {
+        margin-top: 0;
+      }
     }
   }
 </style>
