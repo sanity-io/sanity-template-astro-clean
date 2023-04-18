@@ -25,10 +25,12 @@ This starter uses [Astro](https://astro.build/) for the frontend and [Sanity](ht
 The following commands are meant to be run in **both** the `/app` and `/studio` folders.
 
 1. `npm install` to install dependencies
-2. `sanity init --env`, this will:
--  ask you to select or create a Sanity project and dataset
--  output a `.env` file with appropriate variables
-- _(use or `npm create sanity@latest --init env` if you don't have the CLI installed)_
+2. `npm create sanity@latest init --env`, this will:
+
+- ask you to select or create a Sanity project and dataset
+- output a `.env` file with appropriate variables
+- _(or use `sanity init --env` if you have the CLI installed)_
+
 3. `npm run dev` to start the development server
 
 Your Astro app should now be running on [http://localhost:3000/](http://localhost:3000/) and Studio on [http://localhost:3333/](http://localhost:3333/).
