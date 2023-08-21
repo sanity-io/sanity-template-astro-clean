@@ -12,17 +12,17 @@
   "dependencies": {
     "@sanity/astro": "1.0.1",
     "@sanity/image-url": "1.0.2",
-    "astro": "2.10.7",
+    "astro": "2.10.12",
     "astro-portabletext": "0.9.1",
     "autoprefixer": "10.4.15",
     "groq": "3.15.1",
-    "prettier-plugin-astro": "0.11.0"
+    "prettier-plugin-astro": "0.11.1"
   },
   "devDependencies": {
     "@portabletext/types": "2.0.5",
     "@sanity/types": "3.15.1",
     "eslint": "8.47.0",
-    "prettier": "3.0.1",
+    "prettier": "3.0.2",
     "rimraf": "4.4.1",
     "typescript": "5.1.6",
     "vite": "4.4.9"
