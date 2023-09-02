@@ -15,7 +15,7 @@ if (!projectId || !dataset) {
 import { defineConfig } from "sanity";
 import { deskTool } from "sanity/desk";
 import { visionTool } from "@sanity/vision";
-import { schemaTypes } from "./schema";
+import { schemaTypes } from "./app/schema";
 
 export default defineConfig({
   name: "project-name",

@@ -4,8 +4,7 @@ import path from "node:path";
 import { cwd } from "node:process";
 import util from "node:util";
 
-const appPath = path.join(cwd(), "/app");
-const studioPath = path.join(cwd(), "/studio");
+const appPath = path.join(cwd());
 
 // remove typescript
 const filesToRemove = ["tsconfig.*", "*.ts", "env.d.ts"];
@@ -42,7 +41,7 @@ async function removeTypeScript(folderPath) {
         .readdir(path.resolve(folder), {
           withFileTypes: true,
         })
-        .catch((err) => {});
+        .catch((err) => { });
 
       if (files) {
         for (const file of files) {
@@ -84,5 +83,4 @@ async function removeTypeScript(folderPath) {
   }
 }
 
-await removeTypeScript(studioPath);
 await removeTypeScript(appPath);
