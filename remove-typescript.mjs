@@ -41,7 +41,7 @@ async function removeTypeScript(folderPath) {
         .readdir(path.resolve(folder), {
           withFileTypes: true,
         })
-        .catch((err) => { });
+        .catch((err) => console.log(err));
 
       if (files) {
         for (const file of files) {
