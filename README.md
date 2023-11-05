@@ -31,7 +31,7 @@ Run the following commands
 
 4. `npm run dev` to start the development server
 
-Your Astro app should now be running on [http://localhost:4321/](http://localhost:4321/) and Studio on [http://localhost:4321/admin](http://localhost:4321/).
+Your Astro app should now be running on [http://localhost:4321/](http://localhost:4321/) and Studio on [http://localhost:4321/admin](http://localhost:4321/admin).
 
 ### Add content
 
