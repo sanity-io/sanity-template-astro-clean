@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # Typescript
 *.tsbuildinfo
+
+# ides
+.idea/
