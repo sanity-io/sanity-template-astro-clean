@@ -1,5 +1,7 @@
 # A minimal Astro site with Sanity Studio
 
+_n.b. This is a modified version of this starter, bringing packages up to current level including Astro 4, and employing a temporary publishing to replace the `@sanity/astro` package until a current PR may be accepted._
+
 This starter uses [Astro](https://astro.build/) for the front end and [Sanity](https://sanity.io/) to handle its content.
 
 ## Featuring
