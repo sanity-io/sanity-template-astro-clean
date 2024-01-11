@@ -1,11 +1,12 @@
 ---
 import type { InferGetStaticParamsType } from "astro";
 import { PortableText } from "astro-portabletext";
+import { ptComponents } from "../../utils/portableText/components"
 import Layout from "../../layouts/Layout.astro";
 import { formatDate } from "../../utils";
 import { urlFor } from "../../utils/image";
 import { getPost, getPosts } from "../../utils/sanity";
-
+export const prerender = false;
 export async function getStaticPaths() {
   const posts = await getPosts();
   return posts.map((post) => ({
@@ -39,7 +40,7 @@ const post = await getPost(slug);
         {formatDate(post._createdAt)}
       </p>
       <div class="post__content">
-        <PortableText value={post.body} />
+        <PortableText value={post.body} components={ptComponents} />
       </div>
     </div>
   </section>

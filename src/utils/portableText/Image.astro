@@ -1,0 +1,16 @@
+---
+import type { Props as $, TypedObject } from "astro-portabletext/types";
+
+import Image from "../../components/Image.astro";
+
+// *todo* so what are 'Parameters' -- no typedef yet
+type ImageProps = Parameters<typeof Image>[0];
+
+  export type Props = $<ImageProps & TypedObject>;
+
+    const { node /*, isInline */ } = Astro.props;
+
+    // *todo* from original notes - Do stuff with `isInline`
+---
+
+<Image {...node} />
