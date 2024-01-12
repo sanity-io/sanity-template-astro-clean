@@ -1,7 +1,7 @@
 ---
 import type { InferGetStaticParamsType } from "astro";
 import { PortableText } from "astro-portabletext";
-import { ptComponents } from "../../utils/portableText/PTComponents.astro"
+import ptImage from '../../components/PTImage.astro'
 import Layout from "../../layouts/Layout.astro";
 import { formatDate } from "../../utils";
 import { urlFor } from "../../utils/image";
@@ -12,6 +12,15 @@ export async function getStaticPaths() {
   return posts.map((post) => ({
     params: { slug: post.slug.current },
   }));
+}
+
+// the key to .astro portable text extensions working in astro-portabletext,
+// is to declare their array locally, thus also in a .astro file.
+const extraPtComponents = {
+  type: {
+    image: ptImage,
+    // any other .astro extensions
+  }
 }
 
 type Params = InferGetStaticParamsType<typeof getStaticPaths>;
@@ -40,7 +49,7 @@ const post = await getPost(slug);
         {formatDate(post._createdAt)}
       </p>
       <div class="post__content">
-        <PortableText value={post.body} components={ptComponents} />
+        <PortableText value={post.body} components={extraPtComponents} />
       </div>
     </div>
   </section>

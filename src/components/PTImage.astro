@@ -1,16 +1,18 @@
 ---
 import type { Props as $, TypedObject } from "astro-portabletext/types";
 
-import Image from "../../components/Image.astro";
+import Image from "./Image.astro";
 
-// *todo* so what are 'Parameters' -- no typedef yet
 type ImageProps = Parameters<typeof Image>[0];
 
   export type Props = $<ImageProps & TypedObject>;
 
     const { node /*, isInline */ } = Astro.props;
 
-    // *todo* from original notes - Do stuff with `isInline`
+    // *todo* some note of intention, left in from
+    // original notes: Do stuff with `isInline`
+    // the tag shows up in astro-portabletext larger source
+
 ---
 
 <Image {...node} />
