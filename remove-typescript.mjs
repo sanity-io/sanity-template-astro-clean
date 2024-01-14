@@ -20,17 +20,17 @@ async function removeTypeScript(folderPath) {
       "npm install && npx tsc && npx prettier --write . && npx eslint --fix",
       {
         cwd: folderPath,
-      }
+      },
     );
 
     // remove files
     await execPromise(
       `npx rimraf -g ${filesToRemove.join(
-        " "
+        " ",
       )} && npx rimraf -g "!(node_modules)**/**/*.ts" && npm uninstall rimraf typescript @sanity/types @portabletext/types`,
       {
         cwd: folderPath,
-      }
+      },
     );
 
     // recursively loop through src folder to find all astro file paths
@@ -70,7 +70,7 @@ async function removeTypeScript(folderPath) {
         .replace(/^type\s+.*?;\s*$/gm, "")
         .replace(
           /^.*import\s+type\s*\{\s*Post\s*\}\s*from\s*"\.\.\/utils\/sanity".*\n?/gm,
-          ""
+          "",
         )
         .replace(/as\s+(?:{\s*.*?\s*}|[\w]+);/gm, "");
 

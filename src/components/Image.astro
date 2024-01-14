@@ -1,10 +1,9 @@
 ---
 import { urlFor } from "../utils/image";
 
-type Asset = Parameters<typeof urlFor>[0];
 
   export interface Props {
-    asset: Asset;
+    asset: object;
     alt: string;
     width: number;
     height: number;

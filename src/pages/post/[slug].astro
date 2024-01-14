@@ -1,5 +1,5 @@
 ---
-import type { InferGetStaticParamsType } from "astro";
+// import type { InferGetStaticParamsType } from "astro";
 import { PortableText } from "astro-portabletext";
 import ptImage from '../../components/PTImage.astro'
 import Layout from "../../layouts/Layout.astro";
@@ -9,6 +9,7 @@ import { getPost, getPosts } from "../../utils/sanity";
 export const prerender = false;
 export async function getStaticPaths() {
   const posts = await getPosts();
+  // @ts-ignore
   return posts.map((post) => ({
     params: { slug: post.slug.current },
   }));
@@ -23,8 +24,8 @@ const extraPtComponents = {
   }
 }
 
-type Params = InferGetStaticParamsType<typeof getStaticPaths>;
-const { slug } = Astro.params as Params;
+
+const { slug } = Astro.params 
 
 const post = await getPost(slug);
 ---
