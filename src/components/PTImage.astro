@@ -1,17 +1,11 @@
 ---
-// import type { Props as $, TypedObject } from "astro-portabletext/types";
-
 import Image from "./Image.astro";
 
-
-  // export type Props = $<ImageProps & TypedObject>;
-
-    const { node /*, isInline */ } = Astro.props;
-
-    // *todo* some note of intention, left in from
-    // original notes: Do stuff with `isInline`
-    // the tag shows up in astro-portabletext larger source
+    const { node } = Astro.props;
 
 ---
 
-<Image {...node} />
+<!--<div>-->
+  <Image {...node} height="300" width="400"
+         style="float:right; margin: 10px;" />
+<!--</div>-->

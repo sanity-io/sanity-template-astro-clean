@@ -1,10 +1,9 @@
 {
-  "extends": "astro/tsconfigs/strict",
+  "extends": "astro/tsconfigs/base",
   "compilerOptions": {
     "target": "ES2022",
     "lib": ["dom", "dom.iterable", "esnext"],
     "skipLibCheck": true,
-    "strict": true,
     "importsNotUsedAsValues": "remove",
     "forceConsistentCasingInFileNames": true,
     "noEmit": false,

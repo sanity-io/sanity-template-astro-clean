@@ -10,7 +10,6 @@ const posts = await getPosts();
 <Layout title="Welcome to Astro.">
   <section>
     {posts.length
-      // @ts-ignore *nb* must use this shape, so @ts-ignore apply
       ? posts.map((post) => <Card post={post} />)
       : <Welcome />}
   </section>

@@ -9,7 +9,6 @@ import { getPost, getPosts } from "../../utils/sanity";
 export const prerender = false;
 export async function getStaticPaths() {
   const posts = await getPosts();
-  // @ts-ignore
   return posts.map((post) => ({
     params: { slug: post.slug.current },
   }));
