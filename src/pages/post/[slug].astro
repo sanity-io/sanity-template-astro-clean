@@ -1,5 +1,5 @@
 ---
-import PTExtended from "../../components/PTExtended.astro"
+import PTExtended from "../../components/portabletext/PTExtended.astro"
 import Layout from "../../layouts/Layout.astro";
 import { formatDate } from "../../utils";
 import { urlFor } from "../../utils/image";
@@ -71,9 +71,9 @@ const post = await getPost(slug);
       letter-spacing: -0.02em;
       margin-top: var(--space-6);
 
-      /* Targeting tags in PTExtended */
-      & blockquote {
-        border-left: 5px solid var(--black);
+      /* *todo* with the ampersand nesting,, does not work */
+      /* & */blockquote {
+        border-left: 5px solid  var(--black);
         padding-left: var(--space-3);
         margin-left: var(--space-4);
       }

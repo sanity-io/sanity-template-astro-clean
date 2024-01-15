@@ -1,5 +1,5 @@
 ---
-import PTImage from "../components/PTImage.astro"
+import PTImage from "./PTImage.astro"
 import {PortableText} from "astro-portabletext";
 
 const { value } = Astro.props
@@ -22,7 +22,6 @@ const extraPtComponents = {
     // any other .astro extensions
   }
 }
-console.log('extraPtComponents: ' +JSON.stringify(extraPtComponents))
 ---
 
 <PortableText value={value} components={extraPtComponents} />
