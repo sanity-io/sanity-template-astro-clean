@@ -1,11 +1,9 @@
 ---
 import Image from "./Image.astro";
 
-    const { node } = Astro.props;
+const { node } = Astro.props;
 
 ---
 
-<!--<div>-->
-  <Image {...node} height="300" width="400"
-         style="float:right; margin: 10px;" />
-<!--</div>-->
+<Image {...node} height="300" width="400"
+       style="float:right; margin: 10px;" />
