@@ -12,25 +12,25 @@
   "dependencies": {
     "@astrojs/check": "0.4.1",
     "@astrojs/react": "3.0.9",
-    "@astrojs/vercel": "7.0.2",
+    "@astrojs/vercel": "7.1.1",
     "@narration-sd/sanity-astro": "^0.2.3",
     "@sanity/image-url": "1.0.2",
-    "@sanity/vision": "3.26.1",
-    "@types/react": "18.2.48",
+    "@sanity/vision": "3.27.1",
+    "@types/react": "18.2.54",
     "@types/react-dom": "18.2.18",
-    "astro": "4.2.6",
+    "astro": "4.3.2",
     "astro-portabletext": "0.9.6",
     "autoprefixer": "10.4.17",
-    "groq": "3.26.1",
+    "groq": "3.27.1",
     "prettier-plugin-astro": "0.13.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "sanity": "3.26.1",
+    "sanity": "3.27.1",
     "sanity-plugin-asset-source-unsplash": "^1.1.2"
   },
   "devDependencies": {
     "eslint": "8.56.0",
-    "prettier": "3.2.4",
+    "prettier": "3.2.5",
     "vite": "5.0.12"
   },
   "engines": {
