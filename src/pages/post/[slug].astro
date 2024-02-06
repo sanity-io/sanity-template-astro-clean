@@ -23,7 +23,7 @@ const post = await getPost(slug);
       post.mainImage ? (
         <img
           class="post__cover"
-          src={urlFor(post.mainImage).url()}
+          src={urlFor(post.mainImage).width(1000).url()}
           alt="Cover image"
         />
       ) : (

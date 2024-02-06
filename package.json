@@ -35,5 +35,17 @@
   },
   "engines": {
     "node": ">= 18.19"
+  },
+  "keywords": [
+    "sanity",
+    "astro",
+    "starter"
+  ],
+  "license": "MIT",
+  "author": "Sanity.io <hello@sanity.io>",
+  "homepage": "https://www.sanity.io/templates/astro-sanity-clean",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sanity-io/sanity-template-astro-clean"
   }
 }
