@@ -1,9 +1,6 @@
 # build output
 dist/
 
-# generated types
-.astro/
-.vercel
 # dependencies
 node_modules/
 
@@ -26,4 +23,6 @@ pnpm-debug.log*
 # ides
 .idea/
 
+# generated types
+.astro/
 .vercel
