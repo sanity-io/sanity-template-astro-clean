@@ -14,7 +14,7 @@ import { defineConfig } from "astro/config";
 const projectId = PUBLIC_SANITY_STUDIO_PROJECT_ID || PUBLIC_SANITY_PROJECT_ID;
 const dataset = PUBLIC_SANITY_STUDIO_DATASET || PUBLIC_SANITY_DATASET;
 
-import { sanityIntegration } from "@narration-sd/sanity-astro";
+import { sanityIntegration } from "@sanity/astro";
 import react from "@astrojs/react";
 
 // Change this depending on your hosting provider (Vercel, Netlify etc)
