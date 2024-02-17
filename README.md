@@ -1,10 +1,8 @@
 # A minimal Astro site with Sanity Studio
 
-_n.b. This is a modified version of this starter, bringing packages up to current level including Astro 4, and employing a temporary publishing to replace the `@sanity/astro` package until a current PR may be accepted._
-
 This starter uses [Astro](https://astro.build/) for the front end and [Sanity](https://sanity.io/) to handle its content.
 
-It's intended to give a smooth on-ramp, to all the advantages of Astro with Sanity, and includes an extra feature to help in bringing over content possibly from a previous site.
+It's intended to give a smooth on-ramp, to all the advantages of Astro with Sanity, and includes a feature to help when you'd like to have illustrated content, possibly brought over from a previous site.
 
 ## Featuring
 
@@ -46,24 +44,21 @@ The schema for the `Post` document is defined in the `/schema` folder. You can [
 
 ## Images in Portable Text
 
-In order to make things easier for conversions from other platforms such as WordPress, embedded Images have been added for Portable Text, in both the Studio and the app.
+In order to make things easier for writing your own content with illustrations, as well as conversions from other platforms such as WordPress, embedded Images are included for Portable Text, in both the Studio and the app example.
 
-   This addition includes automatically wrapping text around images, each taking half the column on the browser.
+This feature does automatic wrapping of words around the images, each taking half the column on the browser.
 
 ## Extending Portable Text
 
 The Image addition just described is in `src/components/portabletext`.
 
-You can find in that folder also a `Readme.md` which explains how it was done, and how you might do others as simply, aided by the `PTExtended.astro` file there, as used in the app.
+You can find in that folder also a `Readme.md` which explains how it was done, and how you might do others as simply, aided by the `PTExtended.astro` file there, as used in the example app.
 
 ## TypeScript
 
 TypeScript is always active in Astro, and you can  use it as much as you'd prefer in code you write in this starter.
 
-If you want more strictness than the easy entry in the example app, you can provide this by adding your own `d.ts` files appropriately, and possibly modifying tsconfig.json, all of which are normal ways.
-
-### (deprecated)
-There is also an earlier template version on branch #typescript-enforced which would get you a very 'tied-down' application example. Probably in many uses, this would be overly strict, but it was part of the original package. The script there for removing TypeScript was unforunately not viable, nor should be expected to be over updates, so this was removed.
+If you want more strictness than the easy entry in the example app, you can provide this at any preferred level, by adding your own `d.ts` files appropriately, and possibly modifying tsconfig.json. These are the normal ways with TypeScript.
 
 ## Removing the embedded Studio
 
