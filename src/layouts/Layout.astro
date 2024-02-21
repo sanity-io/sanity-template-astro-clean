@@ -1,6 +1,6 @@
 ---
-// https://docs.astro.build/en/guides/view-transitions/
-import { ViewTransitions } from 'astro:transitions';
+import { AstroFont } from "astro-font";
+import { ViewTransitions } from "astro:transitions";
 
 interface Props {
   title: string;
@@ -9,50 +9,56 @@ interface Props {
 const { title } = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width"
-    />
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="/favicon.svg"
-    />
-    <meta
-      name="generator"
-      content={Astro.generator}
-    />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
 
     <!-- Google fonts -->
-    <link
-      rel="preconnect"
-      href="https://fonts.googleapis.com"
+    <AstroFont
+      config={[
+        {
+          src: [],
+          preload: false,
+          display: "swap",
+          name: "IBM Plex Mono",
+          fallback: "sans-serif",
+          cssVariable: "font-plex-mono",
+          googleFontsURL:
+            "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;700&display=swap",
+        },
+        {
+          src: [],
+          name: "Inter",
+          preload: false,
+          display: "swap",
+          fallback: "sans-serif",
+          cssVariable: "font-family-sans",
+          googleFontsURL:
+            "https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&display=swap",
+        },
+        {
+          src: [],
+          preload: false,
+          display: "swap",
+          name: "PT Serif",
+          fallback: "sans-serif",
+          cssVariable: "font-family-serif",
+          googleFontsURL:
+            "https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap",
+        },
+      ]}
     />
-    <link
-      rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;700&family=Inter:wght@500;700;800&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-      rel="stylesheet"
-    />
-
     <title>{title}</title>
     <ViewTransitions />
   </head>
   <body>
     <div class="container">
       <header class="header">
-        <a
-          class="header__title"
-          href="/"
-          >Astro + Sanity</a
-        >
+        <a class="header__title" href="/">Astro + Sanity</a>
       </header>
       <main>
         <slot />
@@ -70,151 +76,148 @@ const { title } = Astro.props;
               d="M17 16C15.8 17.3235 12.5 20.5 12.5 20.5C12.5 20.5 9.2 17.3235 8 16C5.2 12.9118 4.5 11.7059 4.5 9.5C4.5 7.29412 6.1 5.5 8.5 5.5C10.5 5.5 11.7 6.82353 12.5 8.14706C13.3 6.82353 14.5 5.5 16.5 5.5C18.9 5.5 20.5 7.29412 20.5 9.5C20.5 11.7059 19.8 12.9118 17 16Z"
               fill="currentColor"
               stroke="currentColor"
-              stroke-width="1.2"
-            ></path></svg
+              stroke-width="1.2"></path></svg
           > at Sanity
         </p>
       </footer>
     </div>
+    <style>
+      .container {
+        margin: 0 auto;
+      }
+
+      main {
+        margin-top: 45px;
+      }
+
+      .header {
+        display: flex;
+        padding: 0 var(--space-1);
+        border-bottom: 1px solid #ced2d9;
+
+        z-index: 10;
+        background: var(--white);
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+
+        & .header__title {
+          font-weight: 800;
+          font-size: var(--font-size-3);
+          line-height: var(--line-height-1);
+          padding-left: var(--space-2);
+          margin: var(--space-3) 0;
+          text-decoration: none;
+          color: var(--black);
+        }
+      }
+
+      .footer {
+        display: flex;
+        justify-content: flex-end;
+        padding: 0 var(--space-3);
+
+        & .footer__text {
+          font-size: var(--font-size-1);
+          line-height: var(--line-height-1);
+          display: flex;
+          align-items: center;
+          gap: 2px;
+        }
+      }
+
+      @media (min-width: 575px) {
+        .container {
+          max-width: var(--max-width-1);
+          padding: 0 var(--space-4);
+        }
+
+        main {
+          margin-top: unset;
+        }
+
+        .header {
+          position: unset;
+          border-bottom: none;
+          margin: var(--space-3) 0;
+          padding: var(--space-2) 0;
+          background: unset;
+
+          & .header__title {
+            margin: var(--space-3) 0 var(--space-2);
+            font-size: var(--font-size-5);
+          }
+        }
+
+        .footer {
+          margin: var(--space-3) 0;
+        }
+      }
+    </style>
+
+    <style is:global>
+      :root {
+        --space-0: 0;
+        --space-1: 4px;
+        --space-2: 8px;
+        --space-3: 12px;
+        --space-4: 20px;
+        --space-5: 32px;
+        --space-6: 52px;
+        --space-7: 84px;
+        --space-8: 136px;
+        --space-9: 220px;
+
+        --font-family-mono: IMB Plex Mono;
+
+        --font-size-0: 12px;
+        --font-size-1: 14px;
+        --font-size-2: 16px;
+        --font-size-3: 18px;
+        --font-size-4: 20px;
+        --font-size-5: 24px;
+        --font-size-6: 30px;
+        --font-size-7: 36px;
+        --font-size-8: 48px;
+        --font-size-9: 60px;
+        --font-size-10: 72px;
+
+        --line-height-0: 16px;
+        --line-height-1: 20px;
+        --line-height-2: 24px;
+        --line-height-3: 28px;
+        --line-height-4: 28px;
+        --line-height-5: 32px;
+        --line-height-6: 36px;
+        --line-height-7: 40px;
+        --line-height-8: 48px;
+        --line-height-9: 60px;
+        --line-height-10: 72px;
+        --line-height-11: 96px;
+        --line-height-12: 128px;
+
+        --white: #fff;
+        --black: #101112;
+        --gray-200: #ced2d9;
+        --gray-600: #6e7683;
+        --blue-600: #1e61cd;
+        --magenta-100: #f9d7eb;
+
+        --max-width-0: 320px;
+        --max-width-1: 768px;
+      }
+
+      html {
+        background-color: var(--white);
+        font-family: var(--font-family-sans), var(--font-family-serif),
+          sans-serif;
+        text-size-adjust: 100%;
+      }
+
+      body {
+        margin: 0;
+      }
+    </style>
   </body>
 </html>
-
-<style>
-  .container {
-    margin: 0 auto;
-  }
-
-  main {
-    margin-top: 45px;
-  }
-
-  .header {
-    display: flex;
-    padding: 0 var(--space-1);
-    border-bottom: 1px solid #ced2d9;
-
-    z-index: 10;
-    background: var(--white);
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-
-    & .header__title {
-      font-weight: 800;
-      font-size: var(--font-size-3);
-      line-height: var(--line-height-1);
-      padding-left: var(--space-2);
-      margin: var(--space-3) 0;
-      text-decoration: none;
-      color: var(--black);
-    }
-  }
-
-  .footer {
-    display: flex;
-    justify-content: flex-end;
-    padding: 0 var(--space-3);
-
-    & .footer__text {
-      font-size: var(--font-size-1);
-      line-height: var(--line-height-1);
-      display: flex;
-      align-items: center;
-      gap: 2px;
-    }
-  }
-
-  @media (min-width: 575px) {
-    .container {
-      max-width: var(--max-width-1);
-      padding: 0 var(--space-4);
-    }
-
-    main {
-      margin-top: unset;
-    }
-
-    .header {
-      position: unset;
-      border-bottom: none;
-      margin: var(--space-3) 0;
-      padding: var(--space-2) 0;
-      background: unset;
-
-      & .header__title {
-        margin: var(--space-3) 0 var(--space-2);
-        font-size: var(--font-size-5);
-      }
-    }
-
-    .footer {
-      margin: var(--space-3) 0;
-    }
-  }
-</style>
-
-<style is:global>
-  :root {
-    --space-0: 0;
-    --space-1: 4px;
-    --space-2: 8px;
-    --space-3: 12px;
-    --space-4: 20px;
-    --space-5: 32px;
-    --space-6: 52px;
-    --space-7: 84px;
-    --space-8: 136px;
-    --space-9: 220px;
-
-    --font-family-sans: Inter;
-    --font-family-serif: PT Serif;
-    --font-family-mono: IMB Plex Mono;
-
-    --font-size-0: 12px;
-    --font-size-1: 14px;
-    --font-size-2: 16px;
-    --font-size-3: 18px;
-    --font-size-4: 20px;
-    --font-size-5: 24px;
-    --font-size-6: 30px;
-    --font-size-7: 36px;
-    --font-size-8: 48px;
-    --font-size-9: 60px;
-    --font-size-10: 72px;
-
-    --line-height-0: 16px;
-    --line-height-1: 20px;
-    --line-height-2: 24px;
-    --line-height-3: 28px;
-    --line-height-4: 28px;
-    --line-height-5: 32px;
-    --line-height-6: 36px;
-    --line-height-7: 40px;
-    --line-height-8: 48px;
-    --line-height-9: 60px;
-    --line-height-10: 72px;
-    --line-height-11: 96px;
-    --line-height-12: 128px;
-
-    --white: #fff;
-    --black: #101112;
-    --gray-200: #ced2d9;
-    --gray-600: #6e7683;
-    --blue-600: #1e61cd;
-    --magenta-100: #f9d7eb;
-
-    --max-width-0: 320px;
-    --max-width-1: 768px;
-  }
-
-  html {
-    background-color: var(--white);
-    font-family: var(--font-family-sans), var(--font-family-serif), sans-serif;
-    text-size-adjust: 100%;
-  }
-
-  body {
-    margin: 0;
-  }
-</style>
