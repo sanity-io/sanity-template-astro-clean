@@ -1,11 +1,6 @@
 ---
 import { formatDate } from "../utils";
 import { urlFor } from "../utils/image";
-import type { Post } from "../utils/sanity";
-
-interface Props {
-  post: Post;
-}
 
 const { post } = Astro.props;
 ---
@@ -84,7 +79,7 @@ const { post } = Astro.props;
       font-weight: 600;
       font-family: var(--font-family-sans);
       font-size: var(--font-size-1);
-      margin-top: calc(var(----space-4) + 7);
+      margin-top: calc(var(--space-4) + 7);
     }
 
     & .card__link {

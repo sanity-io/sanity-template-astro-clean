@@ -1,0 +1,27 @@
+---
+import PTImage from "./PTImage.astro"
+import {PortableText} from "astro-portabletext";
+
+const { value } = Astro.props
+
+// This is the way to extend Portable Text interpretation, so that you
+// can use the results in any of your pages. Note that most you'd want
+// are already in `astro-portabletext`, but some would like images, so
+// they're added here.
+
+// the key to .astro portable text extensions working in astro-portabletext,
+// is to declare their array in a .astro file -- .ts etc. won't link in build.
+
+// The components need to be in .astro also, as with the imported
+// PTImage here -- it makes a good example, and just copy the 'node' part.
+// It's a `type`, because that's how inclusions work -- there are other
+// extension components, which you can learn from Portable Text doc.
+const extraPtComponents = {
+  type: {
+    image: PTImage,
+    // any other .astro extensions
+  }
+}
+---
+
+<PortableText value={value} components={extraPtComponents} />

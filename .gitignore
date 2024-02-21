@@ -1,9 +1,6 @@
 # build output
 dist/
 
-# generated types
-.astro/
-.vercel
 # dependencies
 node_modules/
 
@@ -22,3 +19,10 @@ pnpm-debug.log*
 
 # Typescript
 *.tsbuildinfo
+
+# ides
+.idea/
+
+# generated types
+.astro/
+.vercel

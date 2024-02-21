@@ -2,6 +2,8 @@
 
 This starter uses [Astro](https://astro.build/) for the front end and [Sanity](https://sanity.io/) to handle its content.
 
+It's intended to give a smooth on-ramp, to all the advantages of Astro with Sanity, and includes a feature to help when you'd like to have illustrated content, possibly brought over from a previous site.
+
 ## Featuring
 
 - How to fetch content as data from [the Sanity Content Lake](https://www.sanity.io/docs/datastore)
@@ -40,11 +42,23 @@ Your Astro app should now be running on [http://localhost:4321/](http://localhos
 
 The schema for the `Post` document is defined in the `/schema` folder. You can [add more document types](https://www.sanity.io/docs/schema-types) to the Studio to suit your needs.
 
-## Removing TypeScript
+## Images in Portable Text
 
-If you do not wish to use TypeScript, we've included a `remove-typescript.mjs` file in the root of this repository. You can run this file with `node remove-typescript.mjs` to strip all types from this project. Please run this before tampering with any code to ensure that all types are properly removed.
+In order to make things easier for writing your own content with illustrations, as well as conversions from other platforms such as WordPress, embedded Images are included for Portable Text, in both the Studio and the app example.
 
-If you intend to use TypeScript, you can safely remove the `remove-typescript.mjs` file.
+This feature does automatic wrapping of words around the images, each taking half the column on the browser.
+
+## Extending Portable Text
+
+The Image addition just described is in `src/components/portabletext`.
+
+You can find in that folder also a `Readme.md` which explains how it was done, and how you might do others as simply, aided by the `PTExtended.astro` file there, as used in the example app.
+
+## TypeScript
+
+TypeScript is always active in Astro, and you can  use it as much as you'd prefer in code you write in this starter.
+
+If you want more strictness than the easy entry in the example app, you can provide this at any preferred level, by adding your own `d.ts` files appropriately, and possibly modifying tsconfig.json. These are the normal ways with TypeScript.
 
 ## Removing the embedded Studio
 

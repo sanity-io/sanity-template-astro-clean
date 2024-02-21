@@ -1,11 +1,10 @@
 ---
-import type { InferGetStaticParamsType } from "astro";
-import { PortableText } from "astro-portabletext";
+import PTExtended from "../../components/portabletext/PTExtended.astro"
 import Layout from "../../layouts/Layout.astro";
 import { formatDate } from "../../utils";
 import { urlFor } from "../../utils/image";
 import { getPost, getPosts } from "../../utils/sanity";
-
+export const prerender = false;
 export async function getStaticPaths() {
   const posts = await getPosts();
   return posts.map((post) => ({
@@ -13,8 +12,7 @@ export async function getStaticPaths() {
   }));
 }
 
-type Params = InferGetStaticParamsType<typeof getStaticPaths>;
-const { slug } = Astro.params as Params;
+const { slug } = Astro.params 
 
 const post = await getPost(slug);
 ---
@@ -25,7 +23,7 @@ const post = await getPost(slug);
       post.mainImage ? (
         <img
           class="post__cover"
-          src={urlFor(post.mainImage).url()}
+          src={urlFor(post.mainImage).width(1000).url()}
           alt="Cover image"
         />
       ) : (
@@ -39,7 +37,7 @@ const post = await getPost(slug);
         {formatDate(post._createdAt)}
       </p>
       <div class="post__content">
-        <PortableText value={post.body} />
+        <PTExtended value={post.body} />
       </div>
     </div>
   </section>
@@ -73,9 +71,9 @@ const post = await getPost(slug);
       letter-spacing: -0.02em;
       margin-top: var(--space-6);
 
-      /* Targeting tags in PortableText */
-      & blockquote {
-        border-left: 5px solid var(--black);
+      /* *todo* with the ampersand nesting,, does not work */
+      /* & */blockquote {
+        border-left: 5px solid  var(--black);
         padding-left: var(--space-3);
         margin-left: var(--space-4);
       }
