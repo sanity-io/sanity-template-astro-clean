@@ -11,7 +11,7 @@ This starter uses [Astro](https://astro.build/) for the front end and [Sanity](h
 
 ## Prerequisites
 
-- [Node.js](https://nodejs.org/en/) (v16.12 or later)
+- [Node.js](https://nodejs.org/en/) (v20.14 or later)
 
 ## Getting started
 
@@ -35,6 +35,24 @@ Your Astro app should now be running on [http://localhost:4321/](http://localhos
 
 The schema for the `Post` document is defined in the `/schema` folder. You can [add more document types](https://www.sanity.io/docs/schema-types) to the Studio to suit your needs.
 
+### Enabling Visual Editing
+
+Add the following variables to the .env file.
+
+- SANITY_VISUAL_EDITING_ENABLED="true"
+- SANITY_API_READ_TOKEN=""
+
+You'll notice that we rely on a "read token" which is required in order to enable stega encoding and for authentication when Sanity Studio is live previewing your application.
+
+1. Go to https://sanity.io/manage and select your project.
+2. Click on the 🔌 API tab.
+3. Click on + Add API token.
+4. Name it "SANITY_API_READ_TOKEN" and set Permissions to Viewer and hit Save.
+5. Copy the token and add it to your `.env` file: `SANITY_API_READ_TOKEN="<paste your token here>"`
+
+You can read more about Visual Editing (here)[https://www.sanity.io/docs/introduction-to-visual-editing].
+You can read more about the Astro integration (here)[https://github.com/sanity-io/sanity-astro?tab=readme-ov-file#enabling-visual-editing]
+
 ## Removing TypeScript
 
 If you do not wish to use TypeScript, we've included a `remove-typescript.mjs` file in the root of this repository. You can run this file with `node remove-typescript.mjs` to strip all types from this project. Please run this before tampering with any code to ensure that all types are properly removed.
@@ -43,7 +61,7 @@ If you intend to use TypeScript, you can safely remove the `remove-typescript.mj
 
 ## Removing the embedded Studio
 
-If you wish to manage and host the Studio separately, you remove the `studioBasePath` property for the `sanity` configuration in `astro.config.mjs`. You can also remove the following dependencies:
+If you wish to manage and host the Studio separately, you remove the `studioBasePath` and `stega` property for the `sanity` configuration in `astro.config.mjs`. You can also remove the following dependencies:
 
 - `output` in `astro.config.mjs`…
   - …and `adapter` in `astro.config.mjs`

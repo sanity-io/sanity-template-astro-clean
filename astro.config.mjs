@@ -25,13 +25,18 @@ export default defineConfig({
   // Hybrid+adapter is required to support embedded Sanity Studio
   output: "hybrid",
   adapter: vercel(),
-  integrations: [sanity({
-    projectId,
-    dataset,
-    studioBasePath: "/admin",
-    useCdn: false,
-    // `false` if you want to ensure fresh data
-    apiVersion: "2023-03-20" // Set to date of setup to use the latest API version
-  }), react() // Required for Sanity Studio
-  ]
+  integrations: [
+    sanity({
+      projectId,
+      dataset,
+      studioBasePath: "/admin",
+      stega: {
+        studioUrl: "/admin",
+      },
+      useCdn: false,
+      // `false` if you want to ensure fresh data
+      apiVersion: "2023-03-20", // Set to date of setup to use the latest API version
+    }),
+    react(), // Required for Sanity Studio
+  ],
 });
