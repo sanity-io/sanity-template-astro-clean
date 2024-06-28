@@ -24,12 +24,7 @@ Run the following commands
    - output a `.env` file with appropriate variables
    - _(or use `sanity init --env` if you have the CLI installed)_
 
-3. Rename the variables in the .env file:
-
-   - ~~SANITY_STUDIO_PROJECT_ID~~ → PUBLIC_SANITY_STUDIO_PROJECT_ID
-   - ~~SANITY_STUDIO_DATASET~~ → PUBLIC_SANITY_STUDIO_DATASET
-
-4. `npm run dev` to start the development server
+3. `npm run dev` to start the development server
 
 Your Astro app should now be running on [http://localhost:4321/](http://localhost:4321/) and Studio on [http://localhost:4321/admin](http://localhost:4321/admin).
 
