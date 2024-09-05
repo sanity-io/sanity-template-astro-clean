@@ -18,7 +18,7 @@
     "@sanity/vision": "3.48.1",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
-    "astro": "^4.11.3",
+    "astro": "^4.13.1",
     "astro-portabletext": "0.10.0",
     "autoprefixer": "10.4.19",
     "groq": "3.48.1",
