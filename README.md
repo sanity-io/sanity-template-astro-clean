@@ -2,7 +2,7 @@
 
 This starter uses [Astro](https://astro.build/) for the front end and [Sanity](https://sanity.io/) to handle its content.
 
-![Screenshot of the SvelteKit and Sanity starter template](https://placehold.co/1680x1050)
+![Screenshot of the Astro and Sanity starter template](./astro-sanity-demo.png)
 
 ## Features
 
