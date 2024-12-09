@@ -21,7 +21,7 @@ This starter uses [Astro](https://astro.build/) for the front end and [Sanity](h
 
 - [Node.js](https://nodejs.org/en/) - Astro requires v18.17.1 or v20.3.0, v22.0.0 or higher. ( v19 and v21 are not supported.)
 
-### Instal the template
+### Install the template
 
 This template includes a Astro app and a Sanity Studio – an open-source React application that connects to your project’s hosted dataset. The Studio is configured locally and then deployed for content collaborators. Content and assets from the hosted dataset can be queried from Sanity’s APIs.
 
@@ -93,6 +93,7 @@ They will be able to access the deployed Studio, where you can collaborate toget
 ## Resources
 
 - [Sanity.io Documentation](https://www.sanity.io/docs/)
+- [Add Visual Editing (Presentation) to your project](https://www.sanity.io/guides/sanity-astro-blog)
 - [Astro Documentation](https://docs.astro.build/en/getting-started/)
 - [Portable Text Guide](https://www.sanity.io/docs/presenting-block-text)
 - [Join the Sanity Community](https://slack.sanity.io)
