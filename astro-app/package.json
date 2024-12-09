@@ -1,0 +1,39 @@
+{
+  "name": "app",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && tsc --noEmit && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "0.7.0",
+    "@astrojs/react": "3.6.0",
+    "@astrojs/vercel": "^7.7.2",
+    "@sanity/astro": "^3.1.4",
+    "@sanity/image-url": "1.0.2",
+    "@sanity/vision": "3.48.1",
+    "@types/react": "18.3.3",
+    "@types/react-dom": "18.3.0",
+    "astro": "^4.11.3",
+    "astro-portabletext": "0.10.0",
+    "autoprefixer": "10.4.19",
+    "groq": "3.48.1",
+    "prettier-plugin-astro": "0.14.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "sanity": "^3.65.1"
+  },
+  "devDependencies": {
+    "@portabletext/types": "2.0.13",
+    "@sanity/types": "3.48.1",
+    "eslint": "8.57.0",
+    "prettier": "3.3.2",
+    "rimraf": "5.0.1",
+    "typescript": "^5.5.2",
+    "vite": "^5.3.2"
+  }
+}
