@@ -1,8 +1,6 @@
-# Minimal Astro site with Sanity Studio
+# Clean Astro + Sanity app
 
-This starter uses [Astro](https://astro.build/) for the front end and [Sanity](https://sanity.io/) to handle its content.
-
-![Screenshot of the SvelteKit and Sanity starter template](https://cdn.sanity.io/images/fkfgfb3d/production/bf19160e7b5f717e8f1e5dfd21d1cb65c9c0ecf6-841x405.png?w=2000&fit=max&auto=format)
+This template includes an [Astro](https://astro.build/) app with a [Sanity Studio](https://www.sanity.io/) – an open-source React application that connects to your Sanity project’s hosted dataset. The Studio is configured locally and can then be deployed for content collaboration.
 
 ## Features
 
@@ -13,17 +11,11 @@ This starter uses [Astro](https://astro.build/) for the front end and [Sanity](h
 
 ## Demo
 
-[Try the live demo](https://template-astro-clean.sanity.build/)
+https://template-astro-clean.sanity.build
 
 ## Getting Started
 
-### Prerequisites
-
-- [Node.js](https://nodejs.org/en/) - Astro requires v18.17.1 or v20.3.0, v22.0.0 or higher. ( v19 and v21 are not supported.)
-
 ### Install the template
-
-This template includes a Astro app and a Sanity Studio – an open-source React application that connects to your project’s hosted dataset. The Studio is configured locally and then deployed for content collaborators. Content and assets from the hosted dataset can be queried from Sanity’s APIs.
 
 #### 1. Initialize template with Sanity CLI
 
@@ -51,23 +43,23 @@ Open the Studio running locally in your browser on [http://localhost:3333](http:
 
 ### Adding content with Sanity
 
-The template comes pre-defined with a schema containing a `Post` document type.
+#### 1. Publish your first document
 
-#### Publish your first document
+The template comes pre-defined with a schema containing a `Post` document type.
 
 From the Studio, click "+ Create" and select the `Post` document type. Go ahead and create and publish the document.
 
-Your content should now appear in your Astro app ([http://localhost:3000](http://localhost:3000))
+Your content should now appear in your Astro app ([http://localhost:4321](http://localhost:4321))
 
-#### Extending the Sanity schema
+#### 2. Extending the Sanity schema
 
 The schema for the `Post` document type is defined in the `studio/src/schemaTypes/post.ts` file. You can [add more document types](https://www.sanity.io/docs/schema-types) to the schema to suit your needs.
 
 ### Deploying your application and inviting editors
 
-Your Astro frontend (`/astro-app`) and Sanity Studio (`/studio`) are still only running on your local computer. It's time to deploy and get it into the hands of other content editors.
+#### 1. Deploy Sanity Studio
 
-#### Deploy Sanity Studio
+Your Astro frontend (`/astro-app`) and Sanity Studio (`/studio`) are still only running on your local computer.
 
 Back in your Studio directory (`/studio`), run the following command to deploy your Sanity Studio.
 
@@ -75,7 +67,7 @@ Back in your Studio directory (`/studio`), run the following command to deploy y
 npx sanity deploy
 ```
 
-#### Deploy Astro app to Vercel
+#### 2. Deploy Astro app to Vercel
 
 You have the freedom to deploy your Astro app to your hosting provider of choice. With Vercel and GitHub being a popular choice, we'll cover the basics of that approach.
 
@@ -84,7 +76,7 @@ You have the freedom to deploy your Astro app to your hosting provider of choice
 3. Set the `Root Directory` to your Astro app.
 4. Configure your Environment Variables.
 
-#### Invite a collaborator
+#### 3. Invite a collaborator
 
 Now that you’ve deployed your Astro application and Sanity Studio, you can optionally invite a collaborator to your Studio. Open up [Manage](https://www.sanity.io/manage), select your project and click "Invite project members"
 
@@ -92,8 +84,8 @@ They will be able to access the deployed Studio, where you can collaborate toget
 
 ## Resources
 
-- [Sanity.io Documentation](https://www.sanity.io/docs/)
-- [Add Visual Editing (Presentation) to your project](https://www.sanity.io/guides/sanity-astro-blog)
-- [Astro Documentation](https://docs.astro.build/en/getting-started/)
-- [Portable Text Guide](https://www.sanity.io/docs/presenting-block-text)
+- [Sanity documentation](https://www.sanity.io/docs/)
+- [Astro documentation](https://docs.astro.build/en/getting-started/)
 - [Join the Sanity Community](https://slack.sanity.io)
+- [Learn Sanity](https://www.sanity.io/learn)
+- [Add Visual Editing (Presentation) to your project](https://www.sanity.io/guides/sanity-astro-blog)
