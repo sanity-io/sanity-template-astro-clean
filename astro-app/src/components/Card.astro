@@ -16,7 +16,7 @@ const { post } = Astro.props;
       <img
         class="card__cover"
         src={urlFor(post.mainImage).width(500).height(300).url()}
-        alt="Cover image"
+        alt={post.mainImage.alt || ""}
       />
     ) : (
       <div class="card__cover--none" />
