@@ -30,7 +30,7 @@
   "devDependencies": {
     "@portabletext/types": "2.0.13",
     "@sanity/types": "3.48.1",
-    "eslint": "8.57.0",
+    "eslint": "9.20.1",
     "prettier": "3.3.2",
     "rimraf": "5.0.1",
     "typescript": "^5.5.2",
