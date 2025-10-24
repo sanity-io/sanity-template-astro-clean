@@ -24,7 +24,9 @@ import vercel from "@astrojs/vercel/serverless";
 export default defineConfig({
   // Hybrid+adapter is required to support embedded Sanity Studio
   output: "hybrid",
-  adapter: vercel(),
+  adapter: vercel({
+    runtime: "nodejs20.x",
+  }),
   integrations: [
     sanity({
       projectId,
