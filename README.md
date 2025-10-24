@@ -64,6 +64,7 @@ Your Astro frontend (`/astro-app`) and Sanity Studio (`/studio`) are still only 
 Back in your Studio directory (`/studio`), run the following command to deploy your Sanity Studio.
 
 ```shell
+cd studio/
 npx sanity deploy
 ```
 
