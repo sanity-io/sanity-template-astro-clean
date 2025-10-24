@@ -59,7 +59,7 @@ The schema for the `Post` document type is defined in the `studio/src/schemaType
 
 #### 1. Deploy Sanity Studio
 
-Your Astro frontend (`/astro-app`) and Sanity Studio (`/studio`) are still only running on your local computer.
+Your Astro frontend (`/frontend`) and Sanity Studio (`/studio`) are still only running on your local computer.
 
 Back in your Studio directory (`/studio`), run the following command to deploy your Sanity Studio.
 

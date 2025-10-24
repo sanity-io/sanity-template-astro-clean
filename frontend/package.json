@@ -1,0 +1,30 @@
+{
+  "name": "app",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && tsc --noEmit && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.5",
+    "@astrojs/vercel": "^9.0.0",
+    "@sanity/astro": "^3.2.10",
+    "@sanity/image-url": "^1.2.0",
+    "astro": "^5.15.1",
+    "astro-portabletext": "^0.11.3",
+    "autoprefixer": "^10.4.21",
+    "groq": "^3.48.1",
+    "sanity": "^3.99.0"
+  },
+  "devDependencies": {
+    "@portabletext/types": "^2.0.15",
+    "@sanity/types": "^3.99.0",
+    "prettier": "^3.6.2",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript": "^5.9.3"
+  }
+}
