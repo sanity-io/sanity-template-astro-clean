@@ -1,12 +1,16 @@
 ---
 // https://docs.astro.build/en/guides/view-transitions/
 import { ClientRouter } from 'astro:transitions';
+import { VisualEditing } from '@sanity/astro/visual-editing';
 
 interface Props {
   title: string;
 }
 
 const { title } = Astro.props;
+
+// Enable visual editing overlays when the env variable is set to "true"
+const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === 'true';
 ---
 
 <!DOCTYPE html>
@@ -46,6 +50,7 @@ const { title } = Astro.props;
     <ClientRouter />
   </head>
   <body>
+    <VisualEditing enabled={visualEditingEnabled} />
     <div class="container">
       <header class="header">
         <a
