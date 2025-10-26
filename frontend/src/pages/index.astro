@@ -4,7 +4,10 @@ import Welcome from "../components/Welcome.astro";
 import Layout from "../layouts/Layout.astro";
 import { getPosts } from "../utils/sanity";
 
-const posts = await getPosts();
+// Disable prerendering to enable draft mode with cookies
+export const prerender = false;
+
+const posts = await getPosts(Astro.cookies);
 ---
 
 <Layout title="Welcome to Astro.">

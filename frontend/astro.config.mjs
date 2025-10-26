@@ -23,7 +23,14 @@ import vercel from "@astrojs/vercel";
 // https://astro.build/config
 export default defineConfig({
   // Adapter is required to support embedded Sanity Studio
-  adapter: vercel({ runtime: "nodejs20.x" }),
+  adapter: vercel({
+    isr: {
+      // Use SANITY_API_READ_TOKEN for both Sanity API auth and Vercel ISR bypass
+      bypassToken: process.env.SANITY_API_READ_TOKEN,
+      // Exclude draft mode endpoints from caching
+      exclude: ["/api/draft/enable", "/api/draft/disable"],
+    },
+  }),
   integrations: [
     sanity({
       projectId,

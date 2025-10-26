@@ -6,6 +6,9 @@ import { formatDate } from "../../utils";
 import { urlFor } from "../../utils/image";
 import { getPost, getPosts } from "../../utils/sanity";
 
+// Disable prerendering to enable draft mode with cookies
+export const prerender = false;
+
 export async function getStaticPaths() {
   const posts = await getPosts();
   return posts.map((post) => ({
@@ -16,7 +19,7 @@ export async function getStaticPaths() {
 type Params = InferGetStaticParamsType<typeof getStaticPaths>;
 const { slug } = Astro.params as Params;
 
-const post = await getPost(slug);
+const post = await getPost(slug, Astro.cookies);
 ---
 
 <Layout title={post.title!}>

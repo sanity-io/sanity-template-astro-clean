@@ -2,6 +2,7 @@ import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
 import {presentationTool} from 'sanity/presentation'
+import {debugSecrets} from '@sanity/preview-url-secret/sanity-plugin-debug-secrets'
 import {schemaTypes} from './src/schemaTypes'
 
 // Environment variables for project configuration
@@ -10,6 +11,7 @@ const dataset = process.env.SANITY_STUDIO_DATASET || 'production'
 
 // Presentation Preview URL
 const previewUrl = process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:4321'
+console.log('previewUrl:', previewUrl)
 
 export default defineConfig({
   name: 'sanity-template-astro-clean',
@@ -18,8 +20,15 @@ export default defineConfig({
   dataset,
   plugins: [
     structureTool(),
-    presentationTool({previewUrl}),
-    visionTool(),
+    presentationTool({
+      previewUrl: {
+        initial: previewUrl,
+        previewMode: {enable: '/api/draft/enable', disable: '/api/draft/disable'},
+      },
+      allowOrigins: ['http://localhost:*'],
+    }),
+    // debugSecrets(),
+    // visionTool(),
   ],
   schema: {types: schemaTypes},
 })

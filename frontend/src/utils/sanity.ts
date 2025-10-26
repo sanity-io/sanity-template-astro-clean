@@ -1,23 +1,29 @@
 import { sanityClient } from "sanity:client";
 import type { PortableTextBlock } from "@portabletext/types";
 import type { ImageAsset, Slug } from "@sanity/types";
+import type { AstroCookies } from "astro";
 import groq from "groq";
 
-// Check if visual editing is enabled
-const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === 'true';
+const previewCookieName = "__sanity_preview";
 const token = import.meta.env.SANITY_API_READ_TOKEN;
 
-// Helper function to fetch with visual editing support
-async function loadQuery<T>(query: string, params: Record<string, any> = {}): Promise<T> {
-  const perspective = visualEditingEnabled ? 'drafts' : 'published';
+// Helper function to fetch with draft mode support
+async function loadQuery<T>(
+  query: string,
+  params: Record<string, any> = {},
+  cookies?: AstroCookies
+): Promise<T> {
+  // Check if draft mode is enabled via cookie
+  const draftMode = cookies?.has(previewCookieName) ?? false;
+  const perspective = draftMode ? 'drafts' : 'published';
 
   const result = await sanityClient.fetch<T>(
     query,
     params,
     {
       perspective,
-      useCdn: !visualEditingEnabled,
-      ...(visualEditingEnabled && token ? {
+      useCdn: !draftMode,
+      ...(draftMode && token ? {
         token,
         stega: true,
       } : {}),
@@ -27,16 +33,19 @@ async function loadQuery<T>(query: string, params: Record<string, any> = {}): Pr
   return result;
 }
 
-export async function getPosts(): Promise<Post[]> {
+export async function getPosts(cookies?: AstroCookies): Promise<Post[]> {
   return await loadQuery<Post[]>(
-    groq`*[_type == "post" && defined(slug.current)] | order(_createdAt desc)`
+    groq`*[_type == "post" && defined(slug.current)] | order(_createdAt desc)`,
+    {},
+    cookies
   );
 }
 
-export async function getPost(slug: string): Promise<Post> {
+export async function getPost(slug: string, cookies?: AstroCookies): Promise<Post> {
   return await loadQuery<Post>(
     groq`*[_type == "post" && slug.current == $slug][0]`,
-    { slug }
+    { slug },
+    cookies
   );
 }
 
