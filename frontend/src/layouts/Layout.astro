@@ -1,7 +1,7 @@
 ---
 // https://docs.astro.build/en/guides/view-transitions/
-import { ClientRouter } from 'astro:transitions';
-import { VisualEditing } from '@sanity/astro/visual-editing';
+import { ClientRouter } from "astro:transitions";
+import { VisualEditing } from "@sanity/astro/visual-editing";
 
 interface Props {
   title: string;
@@ -10,54 +10,34 @@ interface Props {
 const { title } = Astro.props;
 
 // Enable visual editing overlays when the env variable is set to "true"
-const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === 'true';
+const visualEditingEnabled =
+  import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === "true";
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width"
-    />
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="/favicon.svg"
-    />
-    <meta
-      name="generator"
-      content={Astro.generator}
-    />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
 
     <!-- Google fonts -->
-    <link
-      rel="preconnect"
-      href="https://fonts.googleapis.com"
-    />
-    <link
-      rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin
-    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;700&family=Inter:wght@500;700;800&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
       rel="stylesheet"
     />
 
     <title>{title}</title>
-    <ClientRouter />
+    <!-- <ClientRouter /> // The transition interferes with Visual Editing overlays -->
   </head>
   <body>
     <VisualEditing enabled={visualEditingEnabled} />
     <div class="container">
       <header class="header">
-        <a
-          class="header__title"
-          href="/"
-          >Astro + Sanity</a
-        >
+        <a class="header__title" href="/">Astro + Sanity</a>
       </header>
       <main>
         <slot />
@@ -75,8 +55,7 @@ const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLE
               d="M17 16C15.8 17.3235 12.5 20.5 12.5 20.5C12.5 20.5 9.2 17.3235 8 16C5.2 12.9118 4.5 11.7059 4.5 9.5C4.5 7.29412 6.1 5.5 8.5 5.5C10.5 5.5 11.7 6.82353 12.5 8.14706C13.3 6.82353 14.5 5.5 16.5 5.5C18.9 5.5 20.5 7.29412 20.5 9.5C20.5 11.7059 19.8 12.9118 17 16Z"
               fill="currentColor"
               stroke="currentColor"
-              stroke-width="1.2"
-            ></path></svg
+              stroke-width="1.2"></path></svg
           > at Sanity
         </p>
       </footer>
