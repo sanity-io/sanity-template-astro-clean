@@ -1,7 +1,7 @@
 ---
 // https://docs.astro.build/en/guides/view-transitions/
 import { ClientRouter } from "astro:transitions";
-import { VisualEditing } from "@sanity/astro/visual-editing";
+import VisualEditingComponent from "../components/VisualEditingComponent";
 
 interface Props {
   title: string;
@@ -58,10 +58,10 @@ const visualEditingEnabled = Astro.cookies.has("__sanity_preview");
         </p>
       </footer>
     </div>
-    <VisualEditing
+    <VisualEditingComponent
+      client:only="react"
       enabled={visualEditingEnabled}
       zIndex={1000}
-      transition:persist
     />
   </body>
 </html>
