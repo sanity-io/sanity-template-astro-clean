@@ -2,6 +2,7 @@
 // https://docs.astro.build/en/guides/view-transitions/
 import { ClientRouter } from "astro:transitions";
 import VisualEditingComponent from "../components/VisualEditingComponent";
+import PreviewModeToast from "../components/PreviewModeToast";
 
 interface Props {
   title: string;
@@ -63,6 +64,7 @@ const visualEditingEnabled = Astro.cookies.has("__sanity_preview");
       enabled={visualEditingEnabled}
       zIndex={1000}
     />
+    <PreviewModeToast client:only="react" enabled={visualEditingEnabled} />
   </body>
 </html>
 

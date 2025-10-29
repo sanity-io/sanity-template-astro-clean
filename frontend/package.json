@@ -24,7 +24,8 @@
     "groq": "^3.48.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "sanity": "^3.99.0"
+    "sanity": "^3.99.0",
+    "sonner": "^2.0.7"
   },
   "devDependencies": {
     "@portabletext/types": "^2.0.15",
