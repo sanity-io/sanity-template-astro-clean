@@ -22,8 +22,8 @@
     "autoprefixer": "^10.4.21",
     "groq": "^3.48.1",
     "prettier-plugin-astro": "^0.14.1",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
     "sanity": "^3.99.0"
   },
   "devDependencies": {
