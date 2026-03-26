@@ -18,6 +18,8 @@ const studioUrl = PUBLIC_SANITY_STUDIO_URL || "http://localhost:3333";
 import sanity from "@sanity/astro";
 import react from "@astrojs/react";
 
+import vercel from "@astrojs/vercel";
+
 // Change this depending on your hosting provider (Vercel, Netlify etc)
 // https://docs.astro.build/en/guides/server-side-rendering/#adding-an-adapter
 
@@ -37,6 +39,7 @@ export default defineConfig({
     }),
     react(), // Required for Sanity Studio
   ],
+
   vite: {
     optimizeDeps: {
       include: [
@@ -49,4 +52,6 @@ export default defineConfig({
       ],
     },
   },
+
+  adapter: vercel(),
 });

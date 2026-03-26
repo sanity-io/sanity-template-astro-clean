@@ -5,8 +5,9 @@ This template includes an [Astro](https://astro.build/) app with a [Sanity Studi
 ## Features
 
 - Fetch content as data from [the Sanity Content Lake](https://www.sanity.io/docs/datastore)
+- [Visual Editing](https://www.sanity.io/docs/visual-editing) with click-to-edit overlays powered by the [Presentation tool](https://www.sanity.io/docs/presentation-tool)
 - Render block content with [Portable Text](https://www.sanity.io/docs/presenting-block-text)
-- Manage and create content with the intuitive [Sanity Studio](https://www.sanity.io/docs/sanity-studio).
+- Manage and create content with the intuitive [Sanity Studio](https://www.sanity.io/docs/sanity-studio)
 - Crop and render images with [Sanity Image URLs](https://www.sanity.io/docs/presenting-images)
 
 ## Demo
@@ -53,7 +54,7 @@ Your content should now appear in your Astro app ([http://localhost:4321](http:/
 
 #### 2. Extending the Sanity schema
 
-The schema for the `Post` document type is defined in the `studio/src/schemaTypes/post.ts` file. You can [add more document types](https://www.sanity.io/docs/schema-types) to the schema to suit your needs.
+The schema for the `Post` document type is defined in the `studio/src/schemaTypes/documents/post.ts` file. You can [add more document types](https://www.sanity.io/docs/schema-types) to the schema to suit your needs.
 
 ### Deploying your application and inviting editors
 
@@ -87,6 +88,6 @@ They will be able to access the deployed Studio, where you can collaborate toget
 
 - [Sanity documentation](https://www.sanity.io/docs/)
 - [Astro documentation](https://docs.astro.build/en/getting-started/)
-- [Join the Sanity Community](https://slack.sanity.io)
+- [Join the Sanity Community](https://snty.link/community)
 - [Learn Sanity](https://www.sanity.io/learn)
-- [Add Visual Editing (Presentation) to your project](https://www.sanity.io/guides/sanity-astro-blog)
+- [Visual Editing with Astro and Sanity](https://www.sanity.io/guides/sanity-astro-blog)
