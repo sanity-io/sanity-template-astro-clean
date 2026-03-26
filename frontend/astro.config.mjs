@@ -30,11 +30,22 @@ export default defineConfig({
       // studioBasePath: "/admin",
       useCdn: false,
       // `false` if you want to ensure fresh data
-      apiVersion: "2025-10-23", // Set to date of setup to use the latest API version
+      apiVersion: "2026-03-26", // Set to date of setup to use the latest API version
       stega: {
         studioUrl,
       },
     }),
     react(), // Required for Sanity Studio
   ],
+  vite: {
+    optimizeDeps: {
+      include: [
+        "lodash/isObject.js",
+        "lodash/groupBy.js",
+        "lodash/keyBy.js",
+        "lodash/partition.js",
+        "lodash/sortedIndex.js",
+      ],
+    },
+  },
 });
