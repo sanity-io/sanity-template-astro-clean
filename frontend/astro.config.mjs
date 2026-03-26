@@ -40,6 +40,7 @@ export default defineConfig({
   vite: {
     optimizeDeps: {
       include: [
+        "react/compiler-runtime",
         "lodash/isObject.js",
         "lodash/groupBy.js",
         "lodash/keyBy.js",

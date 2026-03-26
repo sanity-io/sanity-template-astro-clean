@@ -15,6 +15,7 @@
     "sanity"
   ],
   "dependencies": {
+    "@astrojs/vercel": "8.0.4",
     "@sanity/vision": "^5.18.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
