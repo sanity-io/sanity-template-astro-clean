@@ -27,7 +27,7 @@
     "sanity": "^3.99.0"
   },
   "devDependencies": {
-    "@portabletext/types": "^2.0.15",
+    "@portabletext/types": "^3.0.1",
     "@sanity/types": "^3.99.0",
     "eslint": "^9.39.4",
     "prettier": "^3.8.1",
