@@ -22,7 +22,7 @@
     "styled-components": "^6.3.12"
   },
   "devDependencies": {
-    "@sanity/eslint-config-studio": "^5.0.2",
+    "@sanity/eslint-config-studio": "^6.0.0",
     "eslint": "^9.39.4",
     "@types/react": "^19.2.14",
     "prettier": "^3.8.1",
