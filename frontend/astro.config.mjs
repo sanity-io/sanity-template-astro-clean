@@ -20,14 +20,14 @@ import react from "@astrojs/react";
 
 // Change this depending on your hosting provider (Vercel, Netlify etc)
 // https://docs.astro.build/en/guides/server-side-rendering/#adding-an-adapter
-// import vercel from "@astrojs/vercel";
+import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
 export default defineConfig({
   // Set to 'server' for Visual Editing and on-demand rendering
   // Requires an adapter for deployment (Vercel, Netlify, Cloudflare, Node, etc.)
   output: "server",
-  // adapter: vercel(),
+  adapter: vercel(),
   integrations: [
     sanity({
       projectId,
