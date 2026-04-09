@@ -12,7 +12,7 @@ async function loadQuery<T>(query: string, params: Record<string, any> = {}, pre
     query,
     params,
     {
-      perspective: preview ? 'previewDrafts' : 'published',
+      perspective: preview ? 'drafts' : 'published',
       useCdn: !preview,
       ...(preview && token ? { token, stega: true } : {}),
     }
