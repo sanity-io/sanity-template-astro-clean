@@ -11,28 +11,29 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.8",
-    "@astrojs/react": "^5.0.2",
+    "@astrojs/react": "^5.0.3",
     "@astrojs/vercel": "^10.0.4",
     "@sanity/astro": "^3.3.1",
     "@sanity/client": "^7.20.0",
-    "@sanity/image-url": "^2.0.3",
-    "@types/react": "^19.2.2",
-    "@types/react-dom": "^19.2.2",
-    "astro": "^6.1.0",
-    "astro-portabletext": "^0.11.3",
-    "autoprefixer": "^10.4.21",
-    "groq": "^5.18.0",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "react-is": "^19.2.4",
-    "sanity": "^5.18.0",
-    "styled-components": "^6.3.12"
+    "@sanity/preview-url-secret": "^2.0.0",
+    "@sanity/image-url": "^2.1.1",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "astro": "^6.1.5",
+    "astro-portabletext": "^0.13.0",
+    "autoprefixer": "^10.4.27",
+    "groq": "^5.20.0",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "react-is": "^19.2.5",
+    "sanity": "^5.20.0",
+    "styled-components": "^6.4.0"
   },
   "devDependencies": {
-    "@portabletext/types": "^2.0.15",
-    "@sanity/types": "^5.18.0",
-    "prettier": "^3.6.2",
+    "@portabletext/types": "^4.0.2",
+    "@sanity/types": "^5.20.0",
+    "prettier": "^3.8.1",
     "prettier-plugin-astro": "^0.14.1",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.2"
   }
 }

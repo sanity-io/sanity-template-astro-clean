@@ -9,6 +9,9 @@ This template includes an [Astro](https://astro.build/) app with a [Sanity Studi
 - Render block content with [Portable Text](https://www.sanity.io/docs/presenting-block-text)
 - Manage and create content with the intuitive [Sanity Studio](https://www.sanity.io/docs/sanity-studio)
 - Crop and render images with [Sanity Image URLs](https://www.sanity.io/docs/presenting-images)
+- Optimized images with automatic WebP/AVIF format selection, responsive `srcset`, and no layout shift
+- SEO-ready with `<meta>` description, Open Graph, and Twitter Card tags on every page, with per-post overrides via a dedicated SEO field in the Studio
+- Custom 404 page for missing posts and invalid routes
 
 ## Demo
 
@@ -83,6 +86,38 @@ You have the freedom to deploy your Astro app to your hosting provider of choice
 Now that you’ve deployed your Astro application and Sanity Studio, you can optionally invite a collaborator to your Studio. Open up [Manage](https://www.sanity.io/manage), select your project and click "Invite project members"
 
 They will be able to access the deployed Studio, where you can collaborate together on creating content.
+
+## Environment variables
+
+`PUBLIC_SANITY_STUDIO_URL` in `frontend/.env` is intentionally blank for local development (it defaults to `http://localhost:3333`). Before deploying to production, set it to your deployed Studio URL (e.g. `https://your-studio.sanity.studio`). Stega encoding uses this value to generate "Open in Studio" links from the visual editing overlays — leaving it blank in production will cause those links to point to localhost instead of the live Studio.
+
+## Visual Editing notes
+
+Stega encoding handles **string fields** (e.g. `title`, `excerpt`) automatically — invisible metadata is embedded in the string values returned by the Sanity client, and the visual editing overlay detects them in the DOM.
+
+**Non-string fields** (objects and arrays) are not stega-encodable and require explicit `data-sanity` attributes on their rendered elements. Use `createDataAttribute` from `@sanity/visual-editing-csm` to generate these:
+
+```ts
+import { createDataAttribute } from "@sanity/visual-editing-csm";
+
+const dataAttr = createDataAttribute({
+  projectId: "your-project-id",
+  dataset: "production",
+  baseUrl: "http://localhost:3333", // studio URL
+  id: post._id,
+  type: post._type,
+});
+```
+
+Then attach to the relevant element:
+
+```html
+<!-- image (object reference) -->
+<img data-sanity={dataAttr.scope("mainImage").toString()} ... />
+
+<!-- body (PortableText array) -->
+<div data-sanity={dataAttr.scope("body").toString()}>...</div>
+```
 
 ## Resources
 

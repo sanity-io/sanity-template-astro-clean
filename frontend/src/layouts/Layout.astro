@@ -3,9 +3,12 @@ import { VisualEditing } from "@sanity/astro/visual-editing";
 
 interface Props {
   title: string;
+  description?: string;
+  image?: string;
 }
 
-const { title } = Astro.props;
+const { title, description, image } = Astro.props;
+const canonicalURL = Astro.url;
 
 // Enable visual editing overlays when the env variable is set to "true"
 const visualEditingEnabled =
@@ -19,6 +22,23 @@ const visualEditingEnabled =
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Primary meta -->
+    {description && <meta name="description" content={description} />}
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    {description && <meta property="og:description" content={description} />}
+    {image && <meta property="og:image" content={image} />}
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content={image ? "summary_large_image" : "summary"} />
+    <meta name="twitter:title" content={title} />
+    {description && <meta name="twitter:description" content={description} />}
+    {image && <meta name="twitter:image" content={image} />}
 
     <!-- Google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

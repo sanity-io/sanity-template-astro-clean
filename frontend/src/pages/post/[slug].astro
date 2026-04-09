@@ -1,22 +1,61 @@
 ---
 import { PortableText } from "astro-portabletext";
+import { createDataAttribute } from "@sanity/visual-editing-csm";
 import Layout from "../../layouts/Layout.astro";
 import { formatDate } from "../../utils";
-import { urlFor } from "../../utils/image";
+import { urlFor, buildSrcSet } from "../../utils/image";
 import { getPost } from "../../utils/sanity";
 
 const { slug } = Astro.params;
-const post = await getPost(slug!);
+const preview = !!Astro.cookies.get("sanity-preview-session")?.value;
+const post = await getPost(slug!, preview);
+
+if (!post) {
+  return Astro.rewrite('/404');
+}
+
+const visualEditingEnabled =
+  import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === "true";
+
+const dataAttr = visualEditingEnabled
+  ? createDataAttribute({
+      projectId: import.meta.env.PUBLIC_SANITY_STUDIO_PROJECT_ID,
+      dataset: import.meta.env.PUBLIC_SANITY_STUDIO_DATASET,
+      baseUrl:
+        import.meta.env.PUBLIC_SANITY_STUDIO_URL || "http://localhost:3333",
+      id: post._id,
+      type: post._type,
+    })
+  : null;
+
+// SEO values: use editor-provided overrides, fall back to post fields
+const seoTitle = post.seo?.metaTitle || post.title;
+const seoDescription = post.seo?.metaDescription || post.excerpt;
+const ogImageSource = post.seo?.ogImage ?? post.mainImage;
+const ogImage = ogImageSource
+  ? urlFor(ogImageSource).width(1200).height(630).fit("crop").auto("format").quality(80).url()
+  : undefined;
 ---
 
-<Layout title={post.title!}>
+<Layout
+  title={seoTitle ?? "Post"}
+  description={seoDescription}
+  image={ogImage}
+>
   <section class="post">
     {
       post.mainImage ? (
         <img
           class="post__cover"
-          src={urlFor(post.mainImage).url()}
-          alt="Cover image"
+          src={urlFor(post.mainImage).width(750).auto("format").quality(85).url()}
+          srcset={buildSrcSet(post.mainImage, [375, 750, 1200], 85)}
+          sizes="(max-width: 800px) 100vw, 750px"
+          width={post.mainImage.width}
+          height={post.mainImage.height}
+          loading="eager"
+          decoding="sync"
+          alt={post.mainImage.alt || ""}
+          data-sanity={dataAttr?.scope("mainImage").toString()}
         />
       ) : (
         <div class="post__cover--none" />
@@ -24,11 +63,11 @@ const post = await getPost(slug!);
     }
     <div class="post__container">
       <h1 class="post__title">{post.title}</h1>
-      <p class="post__excerpt">{post.excerpt}</p>
+      <p class="post__excerpt" data-sanity={dataAttr?.scope("excerpt").toString()}>{post.excerpt}</p>
       <p class="post__date">
         {formatDate(post._createdAt)}
       </p>
-      <div class="post__content">
+      <div class="post__content" data-sanity={dataAttr?.scope("body").toString()}>
         <PortableText value={post.body} />
       </div>
     </div>

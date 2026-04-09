@@ -15,19 +15,18 @@
     "sanity"
   ],
   "dependencies": {
-    "@astrojs/vercel": "8.0.4",
-    "@sanity/vision": "^5.18.0",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "sanity": "^5.18.0",
-    "styled-components": "^6.1.19"
+    "@sanity/vision": "^5.20.0",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "sanity": "^5.20.0",
+    "styled-components": "^6.4.0"
   },
   "devDependencies": {
-    "@sanity/eslint-config-studio": "^5.0.2",
-    "@types/react": "^19.0.0",
-    "eslint": "^9.0.0",
-    "prettier": "^3.0.2",
-    "typescript": "^5.1.6"
+    "@sanity/eslint-config-studio": "^6.0.0",
+    "@types/react": "^19.2.14",
+    "eslint": "^9.17.0",
+    "prettier": "^3.8.1",
+    "typescript": "^6.0.2"
   },
   "prettier": {
     "semi": false,
