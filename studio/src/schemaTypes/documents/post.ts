@@ -43,6 +43,7 @@ export default defineType({
 					name: 'alt',
 					title: 'Alternative text',
 					type: 'string',
+					validation: (Rule) => Rule.required(),
 				}),
 			],
     }),
@@ -50,6 +51,11 @@ export default defineType({
       name: 'body',
       title: 'Body',
       type: 'blockContent',
+    }),
+    defineField({
+      name: 'seo',
+      title: 'SEO',
+      type: 'seo',
     }),
   ],
   preview: {

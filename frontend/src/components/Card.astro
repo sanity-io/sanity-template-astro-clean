@@ -1,6 +1,7 @@
 ---
+import { createDataAttribute } from "@sanity/visual-editing-csm";
 import { formatDate } from "../utils";
-import { urlFor } from "../utils/image";
+import { urlFor, buildSrcSet } from "../utils/image";
 import type { Post } from "../utils/sanity";
 
 interface Props {
@@ -8,6 +9,20 @@ interface Props {
 }
 
 const { post } = Astro.props;
+
+const visualEditingEnabled =
+  import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === "true";
+
+const dataAttr = visualEditingEnabled
+  ? createDataAttribute({
+      projectId: import.meta.env.PUBLIC_SANITY_STUDIO_PROJECT_ID,
+      dataset: import.meta.env.PUBLIC_SANITY_STUDIO_DATASET,
+      baseUrl:
+        import.meta.env.PUBLIC_SANITY_STUDIO_URL || "http://localhost:3333",
+      id: post._id,
+      type: post._type,
+    })
+  : null;
 ---
 
 <div class="card">
@@ -15,8 +30,15 @@ const { post } = Astro.props;
     post.mainImage ? (
       <img
         class="card__cover"
-        src={urlFor(post.mainImage).width(500).height(300).url()}
+        src={urlFor(post.mainImage).width(500).height(300).fit("crop").auto("format").quality(80).url()}
+        srcset={buildSrcSet(post.mainImage, [366, 500, 732], 80)}
+        sizes="(max-width: 800px) 100vw, 366px"
+        width={500}
+        height={300}
+        loading="lazy"
+        decoding="async"
         alt={post.mainImage.alt || ""}
+        data-sanity={dataAttr?.scope("mainImage").toString()}
       />
     ) : (
       <div class="card__cover--none" />
@@ -84,7 +106,7 @@ const { post } = Astro.props;
       font-weight: 600;
       font-family: var(--font-family-sans);
       font-size: var(--font-size-1);
-      margin-top: calc(var(----space-4) + 7);
+      margin-top: calc(var(--space-4) + 7px);
     }
 
     & .card__link {
