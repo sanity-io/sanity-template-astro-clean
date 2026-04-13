@@ -14,11 +14,11 @@
     "@astrojs/react": "^5.0.3",
     "@astrojs/vercel": "^10.0.4",
     "@sanity/astro": "^3.3.1",
-    "@sanity/client": "^7.20.0",
+    "@sanity/client": "^7.21.0",
     "@sanity/image-url": "^2.1.1",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "astro": "^6.1.5",
+    "astro": "^6.1.6",
     "astro-portabletext": "^0.13.0",
     "autoprefixer": "^10.4.27",
     "groq": "^5.20.0",
@@ -31,7 +31,7 @@
   "devDependencies": {
     "@portabletext/types": "^4.0.2",
     "@sanity/types": "^5.20.0",
-    "prettier": "^3.8.1",
+    "prettier": "^3.8.2",
     "prettier-plugin-astro": "^0.14.1",
     "typescript": "^5.9.3"
   }
