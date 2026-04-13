@@ -41,11 +41,11 @@ const ogImage = ogImageSource
   description={seoDescription}
   image={ogImage}
 >
-  <section class="post">
+  <section class="w-full my-1 mb-5">
     {
       post.mainImage ? (
         <img
-          class="post__cover"
+          class="w-full h-50 object-cover md:w-187.5 md:h-95"
           src={urlFor(post.mainImage).width(750).auto("format").quality(85).url()}
           srcset={buildSrcSet(post.mainImage, [375, 750, 1200], 85)}
           sizes="(max-width: 800px) 100vw, 750px"
@@ -57,119 +57,18 @@ const ogImage = ogImageSource
           data-sanity={dataAttr?.scope("mainImage").toString()}
         />
       ) : (
-        <div class="post__cover--none" />
+        <div class="w-full h-50 bg-black md:w-187.5 md:h-95" />
       )
     }
-    <div class="post__container">
-      <h1 class="post__title">{post.title}</h1>
-      <p class="post__excerpt" data-sanity={dataAttr?.scope("excerpt").toString()}>{post.excerpt}</p>
-      <p class="post__date">
+    <div class="px-3">
+      <h1 class="font-sans font-extrabold text-4xl leading-9 my-5 md:text-7xl md:leading-18 md:mt-13 md:mb-0 md:-tracking-[0.025em]">{post.title}</h1>
+      <p class="font-serif font-normal text-2xl leading-7 mt-0 md:leading-8 md:mt-3 md:mb-3" data-sanity={dataAttr?.scope("excerpt").toString()}>{post.excerpt}</p>
+      <p class="font-sans font-semibold text-sm leading-5 mt-5 md:text-lg md:leading-6 md:mt-0">
         {formatDate(post._createdAt)}
       </p>
-      <div class="post__content" data-sanity={dataAttr?.scope("body").toString()}>
+      <div class="prose prose-lg prose-serif mt-13 md:mt-21 max-w-none prose-blockquote:border-l-[5px] prose-blockquote:border-black prose-blockquote:pl-3 prose-blockquote:ml-5 prose-a:text-blue-600 prose-a:no-underline" data-sanity={dataAttr?.scope("body").toString()}>
         <PortableText value={post.body} />
       </div>
     </div>
   </section>
 </Layout>
-
-<style>
-  .post {
-    width: 100%;
-    margin: var(--space-1) 0 var(--space-4);
-
-    & .post__cover,
-    & .post__cover--none {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
-
-    & .post__cover--none {
-      background: var(--black);
-    }
-
-    & .post__container {
-      padding: 0 var(--space-3);
-    }
-
-    & .post__content {
-      font-family: var(--font-family-serif);
-      font-weight: 400;
-      font-size: var(--font-size-4);
-      line-height: var(--line-height-5);
-      letter-spacing: -0.02em;
-      margin-top: var(--space-6);
-
-      /* Targeting tags in PortableText */
-      & blockquote {
-        border-left: 5px solid var(--black);
-        padding-left: var(--space-3);
-        margin-left: var(--space-4);
-      }
-
-      & a {
-        color: var(--blue-600);
-        text-decoration: none;
-      }
-    }
-
-    & .post__title {
-      font-family: var(--font-family-sans);
-      font-size: var(--font-size-7);
-      line-height: var(--line-height-6);
-      margin: var(--space-4) 0;
-      font-weight: 800;
-    }
-
-    & .post__excerpt {
-      font-family: var(--font-family-serif);
-      font-size: var(--font-size-5);
-      line-height: var(--line-height-4);
-      margin-top: 0;
-      font-weight: 400;
-    }
-
-    & .post__date {
-      font-family: var(--font-family-sans);
-      font-weight: 600;
-      font-size: var(--font-size-1);
-      line-height: var(--line-height-1);
-      margin-top: var(--space-4);
-    }
-  }
-
-  @media (min-width: 800px) {
-    .post {
-      & .post__cover,
-      & .post__cover--none {
-        width: 750px;
-        height: 380px;
-      }
-
-      & .post__title {
-        font-size: var(--font-size-10);
-        line-height: var(--line-height-10);
-        margin: var(--space-6) 0 0;
-        letter-spacing: -0.025em;
-      }
-
-      & .post__excerpt {
-        font-size: var(--font-size-5);
-        line-height: var(--line-height-5);
-        margin-top: var(--space-3);
-        margin-bottom: var(--space-3);
-      }
-
-      & .post__date {
-        font-size: var(--font-size-3);
-        line-height: var(--line-height-2);
-        margin-top: var(--space-0);
-      }
-
-      & .post__content {
-        margin-top: var(--space-7);
-      }
-    }
-  }
-</style>

@@ -1,0 +1,25 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: "Inter", sans-serif;
+  --font-serif: "PT Serif", serif;
+  --font-mono: "IBM Plex Mono", monospace;
+
+  --color-white: #fff;
+  --color-black: #101112;
+  --color-gray-200: #ced2d9;
+  --color-gray-600: #6e7683;
+  --color-blue-600: #1e61cd;
+  --color-magenta-100: #f9d7eb;
+}
+
+html {
+  background-color: var(--color-white);
+  font-family: var(--font-sans);
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+}
