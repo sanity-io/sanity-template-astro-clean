@@ -1,6 +1,7 @@
 import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
+import {codeInput} from '@sanity/code-input'
 import {defineDocuments, defineLocations, presentationTool} from 'sanity/presentation'
 import {schemaTypes} from './src/schemaTypes'
 
@@ -44,6 +45,7 @@ export default defineConfig({
       },
     }),
     visionTool(),
+    codeInput(),
   ],
   schema: {types: schemaTypes},
 })

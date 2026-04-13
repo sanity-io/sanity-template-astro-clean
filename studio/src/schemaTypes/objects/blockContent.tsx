@@ -56,5 +56,8 @@ export default defineType({
         ],
       },
     }),
+    defineArrayMember({
+      type: 'code',
+    }),
   ],
 })
