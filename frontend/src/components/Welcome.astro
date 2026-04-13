@@ -2,28 +2,29 @@
 
 ---
 
-<div class="container">
-  <div class="logos">
-    <div class="logos__blur"></div>
-    <img class="logos__entry" src="/astro.svg" alt="Astro Logo" />
-    <span class="logos__plus">+</span>
-    <img class="logos__entry" src="/sanity.svg" alt="Sanity Logo" />
+<div class="flex flex-col items-center px-2">
+  <div class="hidden sm:flex items-center my-13 mb-8">
+    <div class="absolute flex w-93.75 h-28.75 bg-magenta-100 blur-[82px] -rotate-19 -z-1"></div>
+    <img class="flex" src="/astro.svg" alt="Astro Logo" />
+    <span class="flex font-sans font-extrabold text-4xl leading-9 mx-5">+</span>
+    <img class="flex" src="/sanity.svg" alt="Sanity Logo" />
   </div>
-  <div class="steps">
-    <h2 class="steps__title">Next steps</h2>
-    <ul class="steps__list">
-      <li class="steps__entry">
-        <h3 class="steps__subtitle">Publish a post in your Studio</h3>
-        <p class="steps__text">
-          Visit the <a href="http://localhost:3333/">Sanity Studio</a> and publish
+  <div class="flex-col w-full sm:flex sm:max-w-xs sm:p-0">
+    <h2 class="text-2xl leading-6">Next steps</h2>
+    <ul class="list-none p-0 sm:mt-0">
+      <li class="mb-5">
+        <h3 class="text-lg leading-6 sm:mt-5">Publish a post in your Studio</h3>
+        <p class="font-serif leading-6">
+          Visit the <a class="text-blue-600 no-underline" href="http://localhost:3333/">Sanity Studio</a> and publish
           a new document of type post.
         </p>
       </li>
-      <li class="steps__entry">
-        <h3 class="step__title">Dive into the documentation</h3>
-        <p class="steps__text">
+      <li class="mb-5">
+        <h3 class="text-lg leading-6 sm:mt-5">Dive into the documentation</h3>
+        <p class="font-serif leading-6">
           Check out{" "}
           <a
+            class="text-blue-600 no-underline"
             target="_blank"
             rel="noopener noreferrer nofollow"
             href="https://www.sanity.io/docs"
@@ -33,11 +34,12 @@
           to learn more about Sanity.
         </p>
       </li>
-      <li class="steps__entry">
-        <h3 class="steps__subtitle">Join the Sanity Discord</h3>
-        <p class="steps__text">
+      <li class="mb-5">
+        <h3 class="text-lg leading-6 sm:mt-5">Join the Sanity Discord</h3>
+        <p class="font-serif leading-6">
           Leverage{" "}
           <a
+            class="text-blue-600 no-underline"
             target="_blank"
             rel="noopener noreferrer nofollow"
             href="https://snty.link/community"
@@ -50,100 +52,3 @@
     </ul>
   </div>
 </div>
-
-<style>
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: var(--space-2) var(--space-2);
-  }
-
-  .logos {
-    display: none;
-  }
-
-  .steps {
-    flex-direction: column;
-    width: 100%;
-
-    & .steps__list {
-      list-style-type: none;
-      padding: 0;
-    }
-
-    & .steps__entry {
-      margin-bottom: var(--space-4);
-    }
-
-    & .steps__title {
-      font-size: var(--font-size-5);
-      line-height: var(--line-height-2);
-    }
-
-    & .steps__subtitle {
-      font-size: var(--font-size-3);
-      line-height: var(--line-height-2);
-    }
-
-    & .steps__text {
-      font-family: var(--font-family-serif);
-      line-height: var(--line-height-2);
-
-      & a {
-        color: var(--blue-600);
-        text-decoration: none;
-      }
-    }
-  }
-
-  @media (min-width: 575px) {
-    .container {
-      width: 100%;
-    }
-
-    .logos {
-      display: flex;
-      align-items: center;
-      margin: var(--space-6) 0 var(--space-5) 0;
-
-      & .logos__blur {
-        display: flex;
-        position: absolute;
-        width: 375px;
-        height: 115px;
-        background: var(--magenta-100);
-        filter: blur(82px);
-        transform: rotate(-19deg);
-        z-index: -1;
-      }
-
-      & .logos__plus {
-        display: flex;
-        font-family: var(--font-family-sans);
-        font-weight: 800;
-        font-size: var(--font-size-7);
-        line-height: var(--line-height-6);
-        margin: 0 var(--space-4);
-      }
-
-      & .logos__entry {
-        display: flex;
-      }
-    }
-
-    .steps {
-      max-width: var(--max-width-0);
-      display: flex;
-      padding: 0;
-
-      & .steps__subtitle {
-        margin-top: var(--space-4);
-      }
-
-      & .steps__list {
-        margin-top: 0;
-      }
-    }
-  }
-</style>
