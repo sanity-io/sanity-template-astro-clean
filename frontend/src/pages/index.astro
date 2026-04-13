@@ -4,8 +4,7 @@ import Welcome from "../components/Welcome.astro";
 import Layout from "../layouts/Layout.astro";
 import { getPosts } from "../utils/sanity";
 
-const preview = !!Astro.cookies.get("sanity-preview-session")?.value;
-const posts = await getPosts(preview);
+const posts = await getPosts();
 ---
 
 <Layout

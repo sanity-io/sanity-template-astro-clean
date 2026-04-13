@@ -91,6 +91,8 @@ They will be able to access the deployed Studio, where you can collaborate toget
 
 `PUBLIC_SANITY_STUDIO_URL` in `frontend/.env` is intentionally blank for local development (it defaults to `http://localhost:3333`). Before deploying to production, set it to your deployed Studio URL (e.g. `https://your-studio.sanity.studio`). Stega encoding uses this value to generate "Open in Studio" links from the visual editing overlays — leaving it blank in production will cause those links to point to localhost instead of the live Studio.
 
+`PUBLIC_SANITY_VISUAL_EDITING_ENABLED` controls the entire visual editing system. Set it to `"true"` for local development and staging environments where editors use the Presentation tool. **In production, omit it or set it to `"false"` — this switches to the published content perspective, disables stega encoding, and removes `data-sanity` attributes from the rendered HTML.**
+
 ## Visual Editing notes
 
 Stega encoding handles **string fields** (e.g. `title`, `excerpt`) automatically — invisible metadata is embedded in the string values returned by the Sanity client, and the visual editing overlay detects them in the DOM.
