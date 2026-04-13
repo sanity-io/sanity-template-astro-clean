@@ -19,6 +19,8 @@ import react from "@astrojs/react";
 // https://docs.astro.build/en/guides/server-side-rendering/#adding-an-adapter
 import vercel from "@astrojs/vercel";
 
+import tailwindcss from "@tailwindcss/vite";
+
 // https://astro.build/config
 export default defineConfig({
   // Set to 'server' for Visual Editing and on-demand rendering
@@ -50,5 +52,7 @@ export default defineConfig({
         "lodash/sortedIndex.js",
       ],
     },
+
+    plugins: [tailwindcss()],
   },
 });

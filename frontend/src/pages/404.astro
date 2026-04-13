@@ -3,62 +3,12 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Page not found — Astro + Sanity">
-  <div class="not-found">
-    <p class="not-found__code">404</p>
-    <h1 class="not-found__title">Page not found</h1>
-    <p class="not-found__message">
+  <div class="flex flex-col items-start px-3 pt-13 gap-3">
+    <p class="font-mono text-sm font-medium text-gray-600 m-0 tracking-widest">404</p>
+    <h1 class="font-sans text-5xl font-extrabold leading-12 -tracking-[0.025em] m-0 text-black">Page not found</h1>
+    <p class="font-serif text-xl leading-7 text-gray-600 m-0">
       The page you're looking for doesn't exist or has been moved.
     </p>
-    <a class="not-found__link" href="/">← Back to home</a>
+    <a class="font-sans text-base font-medium text-blue-600 no-underline mt-2 hover:underline" href="/">← Back to home</a>
   </div>
 </Layout>
-
-<style>
-  .not-found {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: var(--space-6) var(--space-3);
-    gap: var(--space-3);
-
-    & .not-found__code {
-      font-family: var(--font-family-mono);
-      font-size: var(--font-size-1);
-      font-weight: 500;
-      color: var(--gray-600);
-      margin: 0;
-      letter-spacing: 0.1em;
-    }
-
-    & .not-found__title {
-      font-family: var(--font-family-sans);
-      font-size: var(--font-size-8);
-      font-weight: 800;
-      line-height: var(--line-height-8);
-      letter-spacing: -0.025em;
-      margin: 0;
-      color: var(--black);
-    }
-
-    & .not-found__message {
-      font-family: var(--font-family-serif);
-      font-size: var(--font-size-4);
-      line-height: var(--line-height-4);
-      color: var(--gray-600);
-      margin: 0;
-    }
-
-    & .not-found__link {
-      font-family: var(--font-family-sans);
-      font-size: var(--font-size-2);
-      font-weight: 500;
-      color: var(--blue-600);
-      text-decoration: none;
-      margin-top: var(--space-2);
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
-</style>

@@ -25,11 +25,11 @@ const dataAttr = visualEditingEnabled
   : null;
 ---
 
-<div class="card">
+<div class="relative flex flex-col border-b border-gray-200 p-2 first:rounded-t last:rounded-b sm:border sm:border-b-0 sm:last:border-b md:flex-row">
   {
     post.mainImage ? (
       <img
-        class="card__cover"
+        class="h-57.75 w-full object-cover md:min-w-[366.5px] md:max-w-[366.5px] md:max-h-57.75"
         src={urlFor(post.mainImage).width(500).height(300).fit("crop").auto("format").quality(80).url()}
         srcset={buildSrcSet(post.mainImage, [366, 500, 732], 80)}
         sizes="(max-width: 800px) 100vw, 366px"
@@ -41,130 +41,21 @@ const dataAttr = visualEditingEnabled
         data-sanity={dataAttr?.scope("mainImage").toString()}
       />
     ) : (
-      <div class="card__cover--none" />
+      <div class="h-57.75 w-full bg-black md:min-w-[366.5px] md:max-w-[366.5px] md:max-h-57.75" />
     )
   }
-  <div class="card__container">
-    <h3 class="card__title">
+  <div class="mx-1 md:mx-5">
+    <h3 class="font-sans font-extrabold text-4xl leading-9 -tracking-[0.025em] my-3 sm:mt-5">
       <a
-        class="card__link"
+        class="text-black no-underline hover:opacity-80 transition-opacity duration-200 before:content-[''] before:absolute before:inset-0"
         href={`/post/${post.slug.current}`}
       >
         {post.title}
       </a>
     </h3>
-    <p class="card__excerpt">{post.excerpt}</p>
-    <p class="card__date">
+    <p class="font-serif font-normal text-xl leading-7 mt-0">{post.excerpt}</p>
+    <p class="font-sans font-semibold text-sm mt-7">
       {formatDate(post._createdAt)}
     </p>
   </div>
 </div>
-
-<style>
-  .card {
-    display: flex;
-    flex-direction: column;
-    padding: var(--space-2);
-    padding: 9px;
-    position: relative;
-    border-bottom: 1px solid #ced2d9;
-
-    & .card__container {
-      margin: 0 var(--space-1) 0;
-    }
-
-    & .card__cover {
-      width: 100%;
-      height: 231px;
-      object-fit: cover;
-    }
-
-    & .card__cover--none {
-      width: 100%;
-      height: 231px;
-      background: var(--black);
-    }
-
-    & .card__title {
-      font-family: var(--font-family-sans);
-      font-weight: 800;
-      font-size: var(--font-size-7);
-      line-height: var(--line-height-6);
-      letter-spacing: -0.025em;
-      margin: var(--space-3) 0;
-    }
-
-    & .card__excerpt {
-      font-family: var(--font-family-serif);
-      font-weight: 400;
-      font-size: var(--font-size-4);
-      line-height: var(--line-height-3);
-      margin-top: 0;
-    }
-
-    & .card__date {
-      font-weight: 600;
-      font-family: var(--font-family-sans);
-      font-size: var(--font-size-1);
-      margin-top: calc(var(--space-4) + 7px);
-    }
-
-    & .card__link {
-      color: var(--black);
-      text-decoration: none;
-
-      &:hover {
-        opacity: 0.8;
-        transition: 0.2s;
-      }
-
-      &::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-      }
-    }
-
-    &:first-child {
-      border-top-left-radius: 3px;
-      border-top-right-radius: 3px;
-    }
-
-    &:last-child {
-      border-bottom-left-radius: 3px;
-      border-bottom-right-radius: 3px;
-    }
-  }
-
-  @media (min-width: 575px) {
-    .card {
-      border: 1px solid #ced2d9;
-      border-bottom: none;
-
-      & .card__title {
-        margin-top: var(--space-4);
-      }
-
-      &:last-child {
-        border-bottom: 1px solid #ced2d9;
-      }
-    }
-  }
-
-  @media (min-width: 800px) {
-    .card {
-      flex-direction: row;
-
-      & .card__container {
-        margin: 0 var(--space-4) 0;
-      }
-
-      & .card__cover,
-      & .card__cover--none {
-        min-width: 366.5px;
-        max-width: 366.5px;
-        max-height: 231px;
-      }
-    }
-  }
-</style>
