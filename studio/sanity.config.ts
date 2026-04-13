@@ -19,12 +19,7 @@ export default defineConfig({
   plugins: [
     structureTool(),
     presentationTool({
-      previewUrl: {
-        initial: previewUrl,
-        previewMode: {
-          enable: '/api/preview',
-        },
-      },
+      previewUrl,
       resolve: {
         // Maps a URL in the preview to the corresponding Sanity document,
         // so opening /post/my-slug in Presentation opens that post in the sidebar.

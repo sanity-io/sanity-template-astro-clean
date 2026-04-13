@@ -7,8 +7,7 @@ import { urlFor, buildSrcSet } from "../../utils/image";
 import { getPost } from "../../utils/sanity";
 
 const { slug } = Astro.params;
-const preview = !!Astro.cookies.get("sanity-preview-session")?.value;
-const post = await getPost(slug!, preview);
+const post = await getPost(slug!);
 
 if (!post) {
   return Astro.rewrite('/404');

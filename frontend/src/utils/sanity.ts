@@ -3,18 +3,19 @@ import type { PortableTextBlock } from "@portabletext/types";
 import type { Slug } from "@sanity/types";
 import groq from "groq";
 
+const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === "true";
 const token = import.meta.env.SANITY_API_READ_TOKEN;
 
-// preview=true: fetch draft content with stega encoding (used inside Presentation tool)
-// preview=false: fetch published content from CDN (used for regular visitors)
-async function loadQuery<T>(query: string, params: Record<string, any> = {}, preview = false): Promise<T> {
+// visualEditingEnabled=true: fetch draft content with stega encoding (local/staging with Presentation tool)
+// visualEditingEnabled=false: fetch published content from CDN (production)
+async function loadQuery<T>(query: string, params: Record<string, any> = {}): Promise<T> {
   return sanityClient.fetch<T>(
     query,
     params,
     {
-      perspective: preview ? 'drafts' : 'published',
-      useCdn: !preview,
-      ...(preview && token ? { token, stega: true } : {}),
+      perspective: visualEditingEnabled ? 'drafts' : 'published',
+      useCdn: !visualEditingEnabled,
+      ...(visualEditingEnabled && token ? { token, stega: true } : {}),
     }
   );
 }
@@ -27,18 +28,16 @@ const imageProjection = `{
   "lqip": asset->metadata.lqip,
 }`;
 
-export async function getPosts(preview = false): Promise<Post[]> {
+export async function getPosts(): Promise<Post[]> {
   return loadQuery<Post[]>(
     groq`*[_type == "post" && defined(slug.current)] | order(_createdAt desc) {
       ...,
       mainImage ${imageProjection}
     }`,
-    {},
-    preview,
   );
 }
 
-export async function getPost(slug: string, preview = false): Promise<Post> {
+export async function getPost(slug: string): Promise<Post> {
   return loadQuery<Post>(
     groq`*[_type == "post" && slug.current == $slug][0] {
       ...,
@@ -49,7 +48,6 @@ export async function getPost(slug: string, preview = false): Promise<Post> {
       }
     }`,
     { slug },
-    preview,
   );
 }
 
