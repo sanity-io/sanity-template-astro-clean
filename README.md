@@ -5,7 +5,7 @@ This template includes an [Astro](https://astro.build/) app with a [Sanity Studi
 ## Features
 
 - Fetch content as data from [the Sanity Content Lake](https://www.sanity.io/docs/datastore)
-- [Visual Editing](https://www.sanity.io/docs/visual-editing) with click-to-edit overlays powered by the [Presentation tool](https://www.sanity.io/docs/presentation-tool)
+- [Visual Editing](https://www.sanity.io/docs/visual-editing) with click-to-edit overlays powered by the [Presentation tool](https://www.sanity.io/docs/visual-editing/configuring-the-presentation-tool)
 - Render block content with [Portable Text](https://www.sanity.io/docs/presenting-block-text)
 - Manage and create content with the intuitive [Sanity Studio](https://www.sanity.io/docs/sanity-studio)
 - Crop and render images with [Sanity Image URLs](https://www.sanity.io/docs/presenting-images)
