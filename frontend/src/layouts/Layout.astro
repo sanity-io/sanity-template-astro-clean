@@ -13,8 +13,69 @@ const canonicalURL = Astro.url;
 
 // Enable visual editing overlays when the env variable is set to "true"
 const visualEditingEnabled =
-  import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === "true";
+  import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === "true"
+const assureTypingInterval:Number
+  = Number(import.meta.env.PUBLIC_SANITY_ASSURE_TYPING_INTERVAL
+  || 1200)
+console.log('assure typing interval: ' + assureTypingInterval);
 ---
+<!--
+  NOTE: 'define:vars' implicitly enforces 'is:inline' behavior.
+  Do not combine them, as it can cause compilation syntax conflicts.
+  We must define the var to have it passed from js section
+-->
+<script define:vars={{ assureTypingInterval }}>
+  (function() {
+
+    // Only operate within the Studio's context,
+    // and if not defeated by negative value flag
+    if (window.self === window.top) return
+    if (assureTypingInterval <= 0) {
+      console.log ('PUBLIC_SANITY_ASSURE_TYPING_INTERVAL set negative, thus defeated.')
+      return;
+    }
+
+    const FLAG = 'sanity_sync_needed';
+    let packetCount = 0;
+
+    // 1. OBSERVE: Monitor the Studio's snapshot stream
+    window.addEventListener('message', (e) => {
+
+      // Catching the v5.6+ Snapshot volume
+      if (e.data?.type === 'presentation/preview-snapshots') {
+        sessionStorage.setItem(FLAG, 'true');
+        packetCount++;
+        // Verbose level: verifies packet flow without clutter
+        console.debug(`[Sanity Observer] Packet #${packetCount} buffered.`);
+      }
+    });
+
+    // 2. RECONCILE: Check for missed updates on page arrival
+    window.addEventListener('load', () => {
+      const needsSync = sessionStorage.getItem(FLAG) === 'true';
+
+      if (needsSync) {
+        // Clear flag immediately to ensure idempotency
+        sessionStorage.removeItem(FLAG);
+
+        // Blue info: Formal acknowledgement of the blind window
+        console.info('%c[Sanity Sync] Blind window detected. Tail-end updates identified.', 'color: #0088ff; font-weight: bold;');
+
+        // The 'Humanistic' pause for recursive queries to settle
+        // n.b. we have to evaluate template-style, _and_ outside
+        // the function call. These are Astro rules....
+        setTimeout(() => {
+          // Yellow warning: The corrective sweep action
+          console.warn('%c[Sanity Sync] EXECUTING CORRECTIVE SWEEP.', 'color: #856404; font-weight: bold; background-color: #fff3cd; border: 1px solid #ffeeba; padding: 2px 4px;');
+          window.location.reload();
+        }, assureTypingInterval); // must evaluate
+      } else {
+        // Green success: Confirmation of a high-fidelity 'atomic' load
+        console.log('%c[Sanity Sync] Page load stable. All characters accounted for.', 'color: #28a745;');
+      }
+    });
+  })();
+</script>
 
 <!doctype html>
 <html lang="en">
