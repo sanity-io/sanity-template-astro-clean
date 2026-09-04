@@ -19,7 +19,7 @@
     "@tailwindcss/vite": "^4.2.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "astro": "^6.1.6",
+    "astro": "^7.1.0",
     "astro-portabletext": "^0.13.0",
     "autoprefixer": "^10.4.27",
     "groq": "^5.20.0",
