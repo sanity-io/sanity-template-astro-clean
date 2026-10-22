@@ -13,7 +13,7 @@ Sanity + Astro starter. npm workspaces: `studio/` (Sanity Studio) and `frontend/
 
 ## Setup and commands
 
-- Env: copy `studio/.env.example` to `studio/.env` and `frontend/.env.example` to `frontend/.env`, then set the project ID and dataset (both files) and `SANITY_API_READ_TOKEN` (frontend).
+- Env: if `studio/.env` or `frontend/.env` is missing (a raw git clone), copy it from its `.env.example`, then set the project ID and dataset (both files) and `SANITY_API_READ_TOKEN` (frontend).
 - `npm install` at the repo root
 - `npm run dev`: frontend on http://localhost:4321 and Studio on http://localhost:3333
 - `npm run build --workspace=frontend`: `astro check`, `tsc --noEmit`, `astro build`
