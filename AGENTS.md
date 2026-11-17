@@ -8,7 +8,7 @@ Sanity + Astro starter. npm workspaces: `studio/` (Sanity Studio) and `frontend/
 - `studio/src/schemaTypes/`: schema types, registered in `index.ts` (`documents/post.ts`, `objects/blockContent.tsx`, `objects/seo.ts`)
 - `frontend/astro.config.mjs`: `@sanity/astro` integration (project ID, dataset, API version, stega)
 - `frontend/src/utils/sanity.ts`: GROQ queries, the `loadQuery` helper and result types, using the `sanity:client` module from `@sanity/astro`
-- `frontend/src/utils/image.ts`: image URL builder
+- Images: `<SanityImage>` from `@sanity/astro/image`, served by `sanityImageService()` (set in `astro.config.mjs`); queries project image fields with the `image::field` GROQ function in `sanity.ts`
 - `frontend/src/pages/`: routes (`index.astro`, `post/[slug].astro`, `404.astro`)
 
 ## Setup and commands

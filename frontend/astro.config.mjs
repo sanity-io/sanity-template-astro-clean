@@ -12,7 +12,7 @@ const projectId = PUBLIC_SANITY_STUDIO_PROJECT_ID;
 const dataset = PUBLIC_SANITY_STUDIO_DATASET;
 const studioUrl = PUBLIC_SANITY_STUDIO_URL || "http://localhost:3333";
 
-import sanity from "@sanity/astro";
+import sanity, { sanityImageService } from "@sanity/astro";
 import react from "@astrojs/react";
 
 // Change this depending on your hosting provider (Vercel, Netlify etc)
@@ -27,6 +27,7 @@ export default defineConfig({
   // Requires an adapter for deployment (Vercel, Netlify, Cloudflare, Node, etc.)
   output: "server",
   adapter: vercel(),
+  image: { service: sanityImageService() },
   integrations: [
     sanity({
       projectId,
