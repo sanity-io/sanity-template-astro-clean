@@ -4,7 +4,7 @@ import { createDataAttribute } from "@sanity/visual-editing-csm";
 import CodeBlock from "../../components/CodeBlock.astro";
 import Layout from "../../layouts/Layout.astro";
 import { formatDate } from "../../utils";
-import { urlFor, buildSrcSet } from "../../utils/image";
+import { getSanityImageProps, isImageWithAsset, SanityImage } from "@sanity/astro/image";
 import { getPost } from "../../utils/sanity";
 
 const { slug } = Astro.params;
@@ -31,9 +31,9 @@ const dataAttr = visualEditingEnabled
 // SEO values: use editor-provided overrides, fall back to post fields
 const seoTitle = post.seo?.metaTitle || post.title;
 const seoDescription = post.seo?.metaDescription || post.excerpt;
-const ogImageSource = post.seo?.ogImage ?? post.mainImage;
+const ogImageSource = [post.seo?.ogImage, post.mainImage].find(isImageWithAsset);
 const ogImage = ogImageSource
-  ? urlFor(ogImageSource).width(1200).height(630).fit("crop").auto("format").quality(80).url()
+  ? getSanityImageProps(ogImageSource, { width: 1200, height: 630 }).src
   : undefined;
 ---
 
@@ -44,14 +44,15 @@ const ogImage = ogImageSource
 >
   <section class="w-full my-1 mb-5">
     {
-      post.mainImage ? (
-        <img
+      isImageWithAsset(post.mainImage) ? (
+        <SanityImage
           class="w-full h-50 object-cover md:w-187.5 md:h-95"
-          src={urlFor(post.mainImage).width(750).auto("format").quality(85).url()}
-          srcset={buildSrcSet(post.mainImage, [375, 750, 1200], 85)}
+          src={post.mainImage}
+          width={750}
+          widths={[375, 750, 1200]}
           sizes="(max-width: 800px) 100vw, 750px"
-          width={post.mainImage.width}
-          height={post.mainImage.height}
+          quality={85}
+          placeholder="blur"
           loading="eager"
           decoding="sync"
           alt={post.mainImage.alt || ""}

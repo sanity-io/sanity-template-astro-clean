@@ -1,7 +1,7 @@
 ---
 import { createDataAttribute } from "@sanity/visual-editing-csm";
 import { formatDate } from "../utils";
-import { urlFor, buildSrcSet } from "../utils/image";
+import { isImageWithAsset, SanityImage } from "@sanity/astro/image";
 import type { Post } from "../utils/sanity";
 
 interface Props {
@@ -27,16 +27,16 @@ const dataAttr = visualEditingEnabled
 
 <div class="relative flex flex-col border-b border-gray-200 p-2 first:rounded-t last:rounded-b sm:border sm:border-b-0 sm:last:border-b md:flex-row">
   {
-    post.mainImage ? (
-      <img
+    isImageWithAsset(post.mainImage) ? (
+      <SanityImage
         class="h-57.75 w-full object-cover md:min-w-[366.5px] md:max-w-[366.5px] md:max-h-57.75"
-        src={urlFor(post.mainImage).width(500).height(300).fit("crop").auto("format").quality(80).url()}
-        srcset={buildSrcSet(post.mainImage, [366, 500, 732], 80)}
-        sizes="(max-width: 800px) 100vw, 366px"
+        src={post.mainImage}
         width={500}
         height={300}
-        loading="lazy"
-        decoding="async"
+        widths={[366, 500, 732]}
+        sizes="(max-width: 800px) 100vw, 366px"
+        quality={80}
+        placeholder="blur"
         alt={post.mainImage.alt || ""}
         data-sanity={dataAttr?.scope("mainImage").toString()}
       />
